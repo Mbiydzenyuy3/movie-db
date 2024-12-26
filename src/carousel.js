@@ -20,24 +20,24 @@ fetch(
       const posterPath = movie.poster_path
         ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
         : "https://via.placeholder.com/500x750?text=No+Image+Available";
-      const slide = document.createElement("div");
-      slide.className = "released-movies swiper-slide";
-      firstSection.appendChild(slide);
+      const slideWrapper = document.createElement("div");
+      slideWrapper.className = "released-movies swiper-slide";
+      firstSection.appendChild(slideWrapper);
       const img = document.createElement("img");
       img.src = posterPath;
       img.alt = movie.title;
       img.className = "movie-poster-one";
-      slide.appendChild(img);
+      slideWrapper.appendChild(img);
       const movieTitle = document.createElement("h4");
       movieTitle.className = "movie-title";
       movieTitle.textContent = movie.title;
-      slide.appendChild(movieTitle);
+      slideWrapper.appendChild(movieTitle);
 
       const movieParagraph = document.createElement("p");
       movieParagraph.className = "movie-paragraph";
       movieParagraph.textContent = movie.paragraph;
       movieParagraph.innerHTML = `&#11088; ${movie.vote_average} | Mystery - Movies `;
-      slide.appendChild(movieParagraph);
+      slideWrapper.appendChild(movieParagraph);
     }
   })
   .then(() => {
@@ -70,4 +70,3 @@ document.addEventListener("DOMContentLoaded", () => {
     },
   });
 });
-
