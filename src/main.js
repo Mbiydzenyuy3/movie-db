@@ -63,7 +63,6 @@ document.querySelector("#app").innerHTML = `
             <h3 class="heading">Popular of the week</h3>
           </div>
           <div class="new-popular-wrapper">
-          
             <div class="new-popular-item">
               <div class="number">1</div>
               <div class="image-popular-release">
