@@ -1,3 +1,4 @@
+// watch list section
 const options = {
   method: "GET",
   headers: {
@@ -70,3 +71,4 @@ document.addEventListener("DOMContentLoaded", () => {
     },
   });
 });
+

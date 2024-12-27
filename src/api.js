@@ -1,3 +1,4 @@
+// popular release
 let likedMovies = [];
 let favoriteMovies = [];
 const options = {

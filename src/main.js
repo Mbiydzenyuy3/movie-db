@@ -17,8 +17,8 @@ document.addEventListener("DOMContentLoaded", () => {
             <nav class="navbar">
               <ul>
                 <li><a href="./home.html">Home</a></li>
-                <li><a href="./details.html">Movies</a></li>
-                <li><a href="./details.html">tv Shows</a></li>
+                <li><a href="./movie-details.html">Movies</a></li>
+                <li><a href="./movie-details.html">tv Shows</a></li>
               </ul>
             </nav>
             <div class="search-bar">
@@ -40,25 +40,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
   <section id="brand-logos" class="swiper logo-carousel">
         <div class="container swiper-wrapper" id="override-swiper-wrapper">
-          <div class="swiper-slideDiv" id="slideDiv-img-wrap">
+          <div class="swiper-slide" id="slide-img-wrap">
             <img src="/assets/img/disney.png" alt="" class="logos" />
           </div>
-          <div class="swiper-slideDiv" id="slideDiv-img-wrap-1"><img src="/assets/img/netflix.png" alt="" class="logos" />
+          <div class="swiper-slide" id="slide-img-wrap-1"><img src="/assets/img/netflix.png" alt="" class="logos" />
           </div>
-          <div class="swiper-slideDiv" id="slideDiv-img-wrap-2"><img src="/assets/img/hbo-max.png" alt="" class="logos" /></div>
-          <div class="swiper-slideDiv" id="slideDiv-img-wrap-3"><img src="/assets/img/pixar.png" alt="" class="logos" /></div>
-          <div class="swiper-slideDiv" id="slideDiv-img-wrap-4"><img src="/assets/img/marvel.png" alt="" class="logos" /></div>
-          <div class="swiper-slideDiv" id="slideDiv-img-wrap-5"><img src="/assets/img/starwars.png" alt="" class="logos" /></div>
-          <div class="swiper-slideDiv" id="slideDiv-img-wrap-6"><img src="/assets/img/national geographic.png" alt="" class="logos" /></div>
-          <div class="swiper-slideDiv" id="slideDiv-img-wrap-7"><img src="/assets/img/youTube.png" alt="" class="logos" /></div>
-          <div class="swiper-slideDiv" id="slideDiv-img-wrap-8"><img src="/assets/img/webseries.png" alt="" class="logos" /></div>
+          <div class="swiper-slide" id="slide-img-wrap-2"><img src="/assets/img/hbo-max.png" alt="" class="logos" /></div>
+          <div class="swiper-slide" id="slide-img-wrap-3"><img src="/assets/img/pixar.png" alt="" class="logos" /></div>
+          <div class="swiper-slide" id="slide-img-wrap-4"><img src="/assets/img/marvel.png" alt="" class="logos" /></div>
+          <div class="swiper-slide" id="slide-img-wrap-5"><img src="/assets/img/starwars.png" alt="" class="logos" /></div>
+          <div class="swiper-slide" id="slide-img-wrap-6"><img src="/assets/img/national geographic.png" alt="" class="logos" /></div>
+          <div class="swiper-slide" id="slide-img-wrap-7"><img src="/assets/img/youTube.png" alt="" class="logos" /></div>
+          <div class="swiper-slide" id="slide-img-wrap-8"><img src="/assets/img/webseries.png" alt="" class="logos" /></div>
         </div>
         <div class="swiper-button-next" id="btn-next"></div>
         <div class="swiper-button-prev" id="btn-prev"></div>
   </section>
   <section class="popular-release mySwiper" id="popular-release">
       <div class="container swiper">
-          <div class="heading-three-item" swiper-slideDiv>
+          <div class="heading-three-item" swiper-slide>
             <h3 class="heading">Popular of the week</h3>
           </div>
           <div class="new-popular-wrapper">
@@ -160,7 +160,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // setupCounter(document.querySelector("#counter"));
 
-// API for release movie section
+// API for just release movie section
 const options = {
   method: "GET",
   headers: {
@@ -183,25 +183,25 @@ fetch(
       const posterPath = movie.poster_path
         ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
         : "https://via.placeholder.com/500x750?text=No+Image+Available";
-      const slideDiv = document.createElement("div");
-      slideDiv.className = "released-movies";
-      firstSection.appendChild(slideDiv);
+      const slide = document.createElement("div");
+      slide.className = "released-movies";
+      firstSection.appendChild(slide);
       const img = document.createElement("img");
       img.src = posterPath;
       img.alt = movie.title;
       img.className = "movie-poster";
-      slideDiv.appendChild(img);
+      slide.appendChild(img);
       const movieTitle = document.createElement("h4");
       movieTitle.className = "movie-title";
       movieTitle.textContent = movie.title;
       movieTitle.innerHTML = `${movie.original_name}`;
-      slideDiv.appendChild(movieTitle);
+      slide.appendChild(movieTitle);
 
       const movieParagraph = document.createElement("p");
       movieParagraph.className = "movie-paragraph";
       movieParagraph.textContent = movie.paragraph;
       movieParagraph.innerHTML = `&#11088; ${movie.vote_average} | Action - Movies `;
-      slideDiv.appendChild(movieParagraph);
+      slide.appendChild(movieParagraph);
     }
   })
   .then(() => {

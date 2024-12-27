@@ -205,3 +205,31 @@ h2 {
 #cast-container {
   margin-top: 8rem;
 }
+
+/* slider styles */
+.slider {
+  position: relative;
+  width: 85%;
+  max-width: 1200px;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.slides {
+  display: flex;
+  align-items: center;
+  transition: transform 0.5s ease-in-out;
+  gap: 2rem;
+}
+
+.slide {
+  min-width: 20%;
+  box-sizing: border-box;
+}
+
+
+.slide img {
+  width: 100%;
+  display: block;
+  border-radius: 10px;
+}

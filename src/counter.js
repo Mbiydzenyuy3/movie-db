@@ -1,3 +1,4 @@
+// hero section
 const options = {
   method: "GET",
   headers: {
@@ -41,8 +42,25 @@ fetch("https://api.themoviedb.org/3/trending/movie/day?language=en-US", options)
       const movieParagraph = document.createElement("p");
       movieParagraph.className = "hero-movie-paragraph swiper-slide";
       movieParagraph.id = "hero-paragraph-id";
-      movieParagraph.textContent = movie.overview;
+      movieParagraph.textContent = movie.overview.substring(0, 100) + "..."; // Show only the first 100 characters
       slideItem.appendChild(movieParagraph);
+
+      const toggleButton = document.createElement("button");
+      toggleButton.textContent = "See Details";
+      toggleButton.className = "toggle-button";
+      slideItem.appendChild(toggleButton);
+
+      toggleButton.onclick = () => {
+        const isCollapsed = movieParagraph.textContent.endsWith("...");
+        if (isCollapsed) {
+          movieParagraph.textContent = movie.overview; // Show full storyline
+          toggleButton.textContent = "See Less";
+        } else {
+          movieParagraph.textContent = movie.overview.substring(0, 100) + "..."; // Collapse to summary
+          toggleButton.textContent = "See Details";
+        }
+      };
+
       const ButtonDiv = document.createElement("div");
       ButtonDiv.id = "button-items";
       slideItem.appendChild(ButtonDiv);
