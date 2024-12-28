@@ -6,6 +6,8 @@
   <link rel="icon" type="image/svg+xml" href="/vite.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet" />
+  <link rel="stylesheet" href="./src/style.css">
+  <link rel="stylesheet" href="./src/main.css">
   <title>Vite App</title>
 </head>
 
@@ -24,8 +26,10 @@
             <li><a href="#simalar-movies">Movies</a></li>
             <li><a href="#footer">tv Shows</a></li>
           </ul>
-          <button id="backToHome" style="background-color: transparent; color: #fff;">Back to
-            home</button>
+          <a href="./index.html">
+            <button id="backToHome" style="background-color: transparent; color: #fff;">Back to
+              home</button>
+          </a>
         </nav>
         <div class="search-bar">
           <form class="search-form">
@@ -40,14 +44,7 @@
     <!-- hero section -->
     <section class="hero-banner" id="hero-section-one">
       <div class="container">
-        <div id="movie-details">
-          <img id="poster" src="" alt="Movie Poster" />
-          <div class="about-movie">
-            <h1 id="title"></h1>
-            <h3>Storyline</h3>
-            <p id="overview"></p>
-          </div>
-        </div>
+        <div id="movie-details"></div>
 
       </div>
     </section>
@@ -59,15 +56,15 @@
         <ul id="castList"></ul>
       </div>
     </section>
-  
+
     <!-- Similar Movies Section -->
-    <section id="similar-movies-section" class="mySwiper swiper">
-      <div class="container swiper-wrapper" id="similarMovies">
+    <section id="similarMoviesSection" class="slider">
+      <div class="container slides" id="similarMovies">
         <h2>Similar Movies</h2>
-        <div id="similar" class="swiper-slide"></div>
+        <div id="similar"></div>
       </div>
-      <div class="swiper-button-next" id="btn-next"></div>
-      <div class="swiper-button-prev" id="btn-prev"></div>
+      <div class="next" id="btn-next"></div>
+      <div class="prev" id="btn-prev"></div>
     </section>
 
     <!-- footer section -->
@@ -109,9 +106,8 @@
       </div>
     </footer>
   </div>
-  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-  <script type="module" src="/src/main.js"></script>
-  <script type="module" src="/src/movie-details.html"></script>
+  <script type="module" src="/src/details.html"></script>
+  <!-- <script type="module" src="/src/main.js"></script> -->
 </body>
 
 </html>

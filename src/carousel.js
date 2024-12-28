@@ -39,6 +39,12 @@ fetch(
       movieParagraph.textContent = movie.paragraph;
       movieParagraph.innerHTML = `&#11088; ${movie.vote_average} | Mystery - Movies `;
       slideWrapper.appendChild(movieParagraph);
+
+      // Add click event to navigate to details page
+      slideWrapper.addEventListener("click", () => {
+        localStorage.setItem("selectedMovieId", movie.id); // Store movie ID
+        window.location.href = "details.html"; // Redirect to details page
+      });
     }
   })
   .then(() => {
@@ -71,4 +77,3 @@ document.addEventListener("DOMContentLoaded", () => {
     },
   });
 });
-

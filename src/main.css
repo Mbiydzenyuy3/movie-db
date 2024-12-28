@@ -233,3 +233,17 @@ h2 {
   display: block;
   border-radius: 10px;
 }
+
+@media screen and (max-width: 768px) {
+  .search-button {
+    display: block;
+    position: fixed;
+    /* Optional: Makes the button fixed on the screen */
+    bottom: 20px;
+    /* Adjust to position at the bottom */
+    right: 20px;
+    /* Adjust to position at the right */
+    background-color: #007BFF;
+    color: white;
+  }
+}

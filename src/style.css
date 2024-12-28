@@ -105,6 +105,13 @@ input[type="search"]:focus {
   background-color: var(--primary-color);
 }
 
+/* search mobile  */
+/* Default: Hide the button on larger screens */
+.search-button {
+  display: none;
+}
+
+
 #hero {
   display: flex;
   transition: transform 1s ease-in-out;
@@ -179,6 +186,7 @@ input[type="search"]:focus {
 #slider {
   display: flex;
   position: relative;
+  width: 100%;
 
 }
 
@@ -235,12 +243,6 @@ input[type="search"]:focus {
   z-index: 1000;
 }
 
-.toggle-button {
-  background-color: transparent;
-  color: #fff;
-  font-weight: 600;
-}
-
 .hero-movies-bg p {
   width: 50%;
   text-align: left;
@@ -280,6 +282,8 @@ input[type="search"]:focus {
 .swiper-container {
   z-index: 10;
 }
+
+/* buttons styles here */
 
 div.cta {
   display: inline-flex;
@@ -327,6 +331,12 @@ button {
   display: flex;
   align-items: center;
   gap: 0.5em;
+}
+
+.toggle-button {
+  background-color: transparent;
+  color: #fff;
+  font-weight: 600;
 }
 
 i {

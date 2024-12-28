@@ -3,7 +3,7 @@ import "./style.css";
 import "./carousel.js";
 import "./api.js";
 import "./counter.js";
-import "./swiper.js";
+import "./search.js";
 import "./details.js";
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -17,14 +17,14 @@ document.addEventListener("DOMContentLoaded", () => {
             <nav class="navbar">
               <ul>
                 <li><a href="./home.html">Home</a></li>
-                <li><a href="./movie-details.html">Movies</a></li>
-                <li><a href="./movie-details.html">tv Shows</a></li>
+                <li><a href="./details.html">Movies</a></li>
+                <li><a href="./details.html">tv Shows</a></li>
               </ul>
             </nav>
             <div class="search-bar">
               <form class="search-form">
-                <input type="search" id="searchInput" placeholder="Search by title..." />
-                <button type="button"  class="search-icon" id="searchButton">
+                <input type="search" id = "searchInput" placeholder="Search by title..." />
+                <button type="button"  class="search-icon" id = "searchButton">
                  <img src="/assets/img/search.svg" alt="">
                 </button>
               </form>
@@ -38,8 +38,8 @@ document.addEventListener("DOMContentLoaded", () => {
 		</div>
 	</section>
 
-  <section id="brand-logos" class="swiper logo-carousel">
-        <div class="container swiper-wrapper" id="override-swiper-wrapper">
+  <section id="brand-logos" class="mySwiper swiper">
+        <div class="container swiper-wrapper">
           <div class="swiper-slide" id="slide-img-wrap">
             <img src="/assets/img/disney.png" alt="" class="logos" />
           </div>
@@ -184,7 +184,7 @@ fetch(
         ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
         : "https://via.placeholder.com/500x750?text=No+Image+Available";
       const slide = document.createElement("div");
-      slide.className = "released-movies";
+      slide.className = "released-movies swiper-slide";
       firstSection.appendChild(slide);
       const img = document.createElement("img");
       img.src = posterPath;
@@ -213,54 +213,3 @@ fetch(
     });
   })
   .catch((err) => console.error(err));
-
-// search
-
-const SEARCH_URL =
-  "https://api.themoviedb.org/3/search/movie?api_key=4ef363f9f9a3c5535149c90970fa2311&language=en-US&query=";
-
-document.getElementById("searchButton").addEventListener("click", async () => {
-  const query = document.getElementById("searchInput").value.trim();
-
-  if (!query) {
-    // alert("Please enter a movie name to search.");
-    return;
-  }
-
-  try {
-    const searchResults = await fetchMovies(
-      `${SEARCH_URL}${encodeURIComponent(query)}&page=1`
-    );
-
-    if (searchResults && searchResults.length > 0) {
-      const movieId = searchResults[0].id; // Use the first result's ID
-      console.log("Redirecting to movie with ID:", movieId); // Debugging: Ensure the ID is valid
-      window.location.href = `movie-details.html?id=${movieId}`; // Dynamically pass the movie ID
-    } else {
-      // alert("No movie found. Please try another search.");
-    }
-  } catch (error) {
-    console.error("Error during search:", error);
-    // alert("An error occurred while searching. Please try again later.");
-  }
-});
-
-async function fetchMovies(urlEndpoint) {
-  try {
-    const response = await fetch(urlEndpoint);
-
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-
-    const data = await response.json();
-    return data.results || [];
-  } catch (error) {
-    console.error("Error fetching movies:", error);
-    return [];
-  }
-}
-
-document.getElementById("backToHome").addEventListener("click", () => {
-  window.location.href = "index.html";
-});
