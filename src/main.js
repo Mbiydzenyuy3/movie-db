@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	</section>
 
   <section id="brand-logos" class="mySwiper swiper">
-        <div class="container swiper-wrapper">
+        <div class="container swiper-wrapper carousel-slide">
           <div class="swiper-slide" id="slide-img-wrap">
             <img src="/assets/img/disney.png" alt="" class="logos" />
           </div>
@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
   </section>
   <section class="popular-release mySwiper" id="popular-release">
       <div class="container swiper">
-          <div class="heading-three-item" swiper-slide>
+          <div class="heading-three-item" slide>
             <h3 class="heading">Popular of the week</h3>
           </div>
           <div class="new-popular-wrapper">
@@ -184,7 +184,7 @@ fetch(
         ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
         : "https://via.placeholder.com/500x750?text=No+Image+Available";
       const slide = document.createElement("div");
-      slide.className = "released-movies swiper-slide";
+      slide.className = "released-movies slide";
       firstSection.appendChild(slide);
       const img = document.createElement("img");
       img.src = posterPath;

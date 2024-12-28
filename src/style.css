@@ -349,18 +349,14 @@ i {
 }
 
 .logos {
-  width: 124px;
+  width: fit-content;
 }
 
-#override-swiper-wrapper {
-  margin: 0;
+
+.carousel-slide {
   display: flex;
-}
-
-.logo-slider {
-  display: grid;
-  grid-template-columns: repeat(9, 1fr);
-  gap: 1rem;
+  align-items: center;
+  gap: 2rem;
 }
 
 .logo-item {

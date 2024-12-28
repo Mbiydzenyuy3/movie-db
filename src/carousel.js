@@ -21,7 +21,10 @@ fetch(
       const posterPath = movie.poster_path
         ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
         : "https://via.placeholder.com/500x750?text=No+Image+Available";
-      const slideWrapper = document.createElement("div");
+
+      const slideWrapper = document.createElement("a");
+
+      slideWrapper.href = "details.html?movie_id=" + movie.id;
       slideWrapper.className = "released-movies swiper-slide";
       firstSection.appendChild(slideWrapper);
       const img = document.createElement("img");
@@ -41,10 +44,10 @@ fetch(
       slideWrapper.appendChild(movieParagraph);
 
       // Add click event to navigate to details page
-      slideWrapper.addEventListener("click", () => {
-        localStorage.setItem("selectedMovieId", movie.id); // Store movie ID
-        window.location.href = "details.html"; // Redirect to details page
-      });
+      // slideWrapper.addEventListener("click", () => {
+      //   sessionStorage.setItem("selectedMovieId", movie.id); // Store movie ID
+      //   window.location.href = "details.html?movie_id=" + movie.id; // Redirect to details page
+      // });
     }
   })
   .then(() => {
