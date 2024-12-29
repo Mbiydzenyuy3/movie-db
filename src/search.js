@@ -19,5 +19,14 @@ fetch(
   .then((res) => res.json())
   .then((data) => {
     console.log(data);
+
+    function search(movie_id) {
+      browser.search.query({
+        query: "",
+        tabId: movie_id,
+      });
+    }
+
+    browser.browserAction.onClicked.addListener(search);
   })
   .catch((err) => console.error(err));

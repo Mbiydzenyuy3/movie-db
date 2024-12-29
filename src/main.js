@@ -20,6 +20,16 @@ document.addEventListener("DOMContentLoaded", () => {
                 <li><a href="./details.html">Movies</a></li>
                 <li><a href="./details.html">tv Shows</a></li>
               </ul>
+              <div class="circle-container">
+              <div class="circle">
+                <button id="open">
+                  <i class="fas fa-bars"></i>
+                </button>
+                <button id="close">
+                  <i class="fas fa-times"></i>
+                </button>
+              </div>
+            </div>
             </nav>
             <div class="search-bar">
               <form class="search-form">
@@ -28,6 +38,10 @@ document.addEventListener("DOMContentLoaded", () => {
                  <img src="/assets/img/search.svg" alt="">
                 </button>
               </form>
+            </div>
+            <div class="buttons btn-button">
+              <a href="./details.html"><button class="btn">SignUp</button></a>
+              <a href="./details.html"><button class="btn">SignIn</button></a>
             </div>
           </div>
   </header>
@@ -183,14 +197,18 @@ fetch(
       const posterPath = movie.poster_path
         ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
         : "https://via.placeholder.com/500x750?text=No+Image+Available";
-      const slide = document.createElement("div");
+
+      const slide = document.createElement("a");
+      slide.href = "details.html?movie_id=" + movie.id;
       slide.className = "released-movies slide";
       firstSection.appendChild(slide);
+
       const img = document.createElement("img");
       img.src = posterPath;
       img.alt = movie.title;
       img.className = "movie-poster";
       slide.appendChild(img);
+
       const movieTitle = document.createElement("h4");
       movieTitle.className = "movie-title";
       movieTitle.textContent = movie.title;
@@ -213,3 +231,26 @@ fetch(
     });
   })
   .catch((err) => console.error(err));
+
+  document.addEventListener("DOMContentLoaded", function () {
+    const openButton = document.getElementById("open");
+    const closeButton = document.getElementById("close");
+    const searchBar = document.querySelector(".search-bar");
+
+    // Show the search bar
+    openButton.addEventListener("click", function () {
+      searchBar.style.display = "block"; // Show the search bar
+      openButton.style.display = "none"; // Hide the open button
+      closeButton.style.display = "block"; // Show the close button
+      document.getElementById("searchInput").focus(); // Focus on input field
+    });
+
+    // Hide the search bar
+    closeButton.addEventListener("click", function () {
+      searchBar.style.display = "none"; // Hide the search bar
+      closeButton.style.display = "none"; // Hide the close button
+      openButton.style.display = "block"; // Show the open button again
+      document.getElementById("searchInput").value = ""; // Clear input field
+    });
+  });
+

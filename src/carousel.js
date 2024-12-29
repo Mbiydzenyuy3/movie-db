@@ -27,6 +27,7 @@ fetch(
       slideWrapper.href = "details.html?movie_id=" + movie.id;
       slideWrapper.className = "released-movies swiper-slide";
       firstSection.appendChild(slideWrapper);
+      
       const img = document.createElement("img");
       img.src = posterPath;
       img.alt = movie.title;

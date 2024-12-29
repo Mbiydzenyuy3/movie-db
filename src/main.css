@@ -220,6 +220,7 @@ h2 {
   align-items: center;
   transition: transform 0.5s ease-in-out;
   gap: 2rem;
+  margin: 0;
 }
 
 .slide {
@@ -234,16 +235,27 @@ h2 {
   border-radius: 10px;
 }
 
+/* .circle-container {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+} */
+
+nav ul {
+  display: none;
+}
+
 @media screen and (max-width: 768px) {
   .search-button {
     display: block;
     position: fixed;
-    /* Optional: Makes the button fixed on the screen */
     bottom: 20px;
-    /* Adjust to position at the bottom */
     right: 20px;
-    /* Adjust to position at the right */
     background-color: #007BFF;
     color: white;
+  }
+
+  .circle-container {
+    display: none;
   }
 }

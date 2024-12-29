@@ -22,7 +22,9 @@ fetch(
       const posterPath = movie.poster_path
         ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
         : "https://via.placeholder.com/500x750?text=No+Image+Available";
-      const slide = document.createElement("div");
+
+      const slide = document.createElement("a");
+      slide.href = "details.html?movie_id=" + movie.id;
       slide.className = "released-movies swiper-slide";
       movieList.appendChild(slide);
 
@@ -78,7 +80,7 @@ function populatePopularMovies(movies) {
   popularWrapper.innerHTML = ""; // Clear existing content
 
   movies.forEach((movie, index) => {
-    const movieItem = document.createElement("div");
+    const movieItem = document.createElement("a");
     movieItem.className = "new-popular-item";
 
     movieItem.innerHTML = `
