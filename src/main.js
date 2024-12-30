@@ -70,13 +70,11 @@ document.addEventListener("DOMContentLoaded", () => {
         <div class="swiper-button-next" id="btn-next"></div>
         <div class="swiper-button-prev" id="btn-prev"></div>
   </section>
+  <h3 class="heading">Popular of the week</h3>   
   <section class="popular-release mySwiper" id="popular-release">
-      <div class="container swiper">
-          <div class="heading-three-item" slide>
-            <h3 class="heading">Popular of the week</h3>
-          </div>
-          <div class="new-popular-wrapper">
-            <div class="new-popular-item">
+     
+      <div class="container swiper">   
+          <div class="new-popular-item">
               <div class="number">1</div>
               <div class="image-popular-release">
                 <img class="poster-img" src="/assets/img/badboys.jpg" alt="img">
@@ -232,25 +230,24 @@ fetch(
   })
   .catch((err) => console.error(err));
 
-  document.addEventListener("DOMContentLoaded", function () {
-    const openButton = document.getElementById("open");
-    const closeButton = document.getElementById("close");
-    const searchBar = document.querySelector(".search-bar");
+document.addEventListener("DOMContentLoaded", function () {
+  const openButton = document.getElementById("open");
+  const closeButton = document.getElementById("close");
+  const searchBar = document.querySelector(".search-bar");
 
-    // Show the search bar
-    openButton.addEventListener("click", function () {
-      searchBar.style.display = "block"; // Show the search bar
-      openButton.style.display = "none"; // Hide the open button
-      closeButton.style.display = "block"; // Show the close button
-      document.getElementById("searchInput").focus(); // Focus on input field
-    });
-
-    // Hide the search bar
-    closeButton.addEventListener("click", function () {
-      searchBar.style.display = "none"; // Hide the search bar
-      closeButton.style.display = "none"; // Hide the close button
-      openButton.style.display = "block"; // Show the open button again
-      document.getElementById("searchInput").value = ""; // Clear input field
-    });
+  // Show the search bar
+  openButton.addEventListener("click", function () {
+    searchBar.style.display = "block"; // Show the search bar
+    openButton.style.display = "none"; // Hide the open button
+    closeButton.style.display = "block"; // Show the close button
+    document.getElementById("searchInput").focus(); // Focus on input field
   });
 
+  // Hide the search bar
+  closeButton.addEventListener("click", function () {
+    searchBar.style.display = "none"; // Hide the search bar
+    closeButton.style.display = "none"; // Hide the close button
+    openButton.style.display = "block"; // Show the open button again
+    document.getElementById("searchInput").value = ""; // Clear input field
+  });
+});

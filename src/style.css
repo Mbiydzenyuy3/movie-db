@@ -821,6 +821,8 @@ footer {
 }
 
 @media screen and (min-width: 1024px) {
+
+  
   .heading-three-footer {
     font-size: 2rem;
     width: 60%;

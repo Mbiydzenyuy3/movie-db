@@ -76,7 +76,7 @@ async function fetchPopularMovies() {
 }
 
 function populatePopularMovies(movies) {
-  const popularWrapper = document.querySelector(".new-popular-wrapper");
+  const popularWrapper = document.querySelector(".new-popular-item");
   popularWrapper.innerHTML = ""; // Clear existing content
 
   movies.forEach((movie, index) => {
