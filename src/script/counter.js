@@ -1,69 +1,69 @@
 // hero section
 const options = {
-  method: "GET",
+  method: 'GET',
   headers: {
-    accept: "application/json",
+    accept: 'application/json',
     Authorization:
-      "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0ZWYzNjNmOWY5YTNjNTUzNTE0OWM5MDk3MGZhMjMxMSIsIm5iZiI6MTczMzUxMDAxOS40MTYsInN1YiI6IjY3NTM0MzgzODcxYTQyYzljMjQ1NDFhNSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.FgU6EplfTnUB-e6GZZfUI7lO0Ad71oYwG54qzjXpozo",
-  },
-};
+      'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0ZWYzNjNmOWY5YTNjNTUzNTE0OWM5MDk3MGZhMjMxMSIsIm5iZiI6MTczMzUxMDAxOS40MTYsInN1YiI6IjY3NTM0MzgzODcxYTQyYzljMjQ1NDFhNSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.FgU6EplfTnUB-e6GZZfUI7lO0Ad71oYwG54qzjXpozo'
+  }
+}
 
-fetch("https://api.themoviedb.org/3/trending/movie/day?language=en-US", options)
+fetch('https://api.themoviedb.org/3/trending/movie/day?language=en-US', options)
   .then((res) => res.json())
   .then((data) => {
-    console.log(data);
-    const heroSection = document.getElementById("slider");
+    console.log(data)
+    const heroSection = document.getElementById('slider')
     for (let index = 0; index < 4; index++) {
-      const movie = data.results[index];
+      const movie = data.results[index]
       const posterPath = movie.poster_path
         ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
-        : "https://via.placeholder.com/500x750?text=No+Image+Available";
-      const slide = document.createElement("div");
-      slide.className = "hero-movies-bg swiper-slide";
-      slide.id = "hero-container";
-      heroSection.appendChild(slide);
+        : 'https://via.placeholder.com/500x750?text=No+Image+Available'
+      const slide = document.createElement('div')
+      slide.className = 'hero-movies-bg swiper-slide'
+      slide.id = 'hero-container'
+      heroSection.appendChild(slide)
 
-      const Image = document.createElement("img");
-      Image.src = posterPath;
-      Image.alt = movie.title;
-      Image.className = "hero-movie-poster swiper-slide";
-      slide.appendChild(Image);
+      const Image = document.createElement('img')
+      Image.src = posterPath
+      Image.alt = movie.title
+      Image.className = 'hero-movie-poster swiper-slide'
+      slide.appendChild(Image)
 
-      const slideItem = document.createElement("a");
-      slideItem.id = "hero-container-item";
-      slide.appendChild(slideItem);
+      const slideItem = document.createElement('a')
+      slideItem.id = 'hero-container-item'
+      slide.appendChild(slideItem)
 
-      const movieTitle = document.createElement("h2");
-      movieTitle.className = "hero-movie-title swiper-slide";
-      movieTitle.id = "hero-title-id";
-      movieTitle.textContent = movie.title;
-      slideItem.appendChild(movieTitle);
+      const movieTitle = document.createElement('h2')
+      movieTitle.className = 'hero-movie-title swiper-slide'
+      movieTitle.id = 'hero-title-id'
+      movieTitle.textContent = movie.title
+      slideItem.appendChild(movieTitle)
 
-      const movieParagraph = document.createElement("p");
-      movieParagraph.className = "hero-movie-paragraph swiper-slide";
-      movieParagraph.id = "hero-paragraph-id";
-      movieParagraph.textContent = movie.overview.substring(0, 100) + "..."; // Show only the first 100 characters
-      slideItem.appendChild(movieParagraph);
+      const movieParagraph = document.createElement('p')
+      movieParagraph.className = 'hero-movie-paragraph swiper-slide'
+      movieParagraph.id = 'hero-paragraph-id'
+      movieParagraph.textContent = movie.overview.substring(0, 100) + '...' // Show only the first 100 characters
+      slideItem.appendChild(movieParagraph)
 
-      const toggleButton = document.createElement("button");
-      toggleButton.textContent = "See Details";
-      toggleButton.className = "toggle-button";
-      slideItem.appendChild(toggleButton);
+      const toggleButton = document.createElement('button')
+      toggleButton.textContent = 'See Details'
+      toggleButton.className = 'toggle-button'
+      slideItem.appendChild(toggleButton)
 
       toggleButton.onclick = () => {
-        const isCollapsed = movieParagraph.textContent.endsWith("...");
+        const isCollapsed = movieParagraph.textContent.endsWith('...')
         if (isCollapsed) {
-          movieParagraph.textContent = movie.overview; // Show full storyline
-          toggleButton.textContent = "See Less";
+          movieParagraph.textContent = movie.overview // Show full storyline
+          toggleButton.textContent = 'See Less'
         } else {
-          movieParagraph.textContent = movie.overview.substring(0, 100) + "..."; // Collapse to summary
-          toggleButton.textContent = "See Details";
+          movieParagraph.textContent = movie.overview.substring(0, 100) + '...' // Collapse to summary
+          toggleButton.textContent = 'See Details'
         }
-      };
+      }
 
-      const ButtonDiv = document.createElement("div");
-      ButtonDiv.id = "button-items";
-      slideItem.appendChild(ButtonDiv);
+      const ButtonDiv = document.createElement('div')
+      ButtonDiv.id = 'button-items'
+      slideItem.appendChild(ButtonDiv)
       ButtonDiv.innerHTML = `
 
         <div class="buttons">
@@ -86,21 +86,21 @@ fetch("https://api.themoviedb.org/3/trending/movie/day?language=en-US", options)
                     </a>
                 </div>
 
-        `;
+        `
     }
   })
   .then(() => {
-    const swiper = new Swiper("#swiper-item", {
+    const swiper = new Swiper('#swiper-item', {
       slidesPerView: 1, // Number of logos visible at a time
       spaceBetween: 5,
       autoplay: {
         delay: 6000, // 3 seconds delay
-        disableOnInteraction: false,
-      },
+        disableOnInteraction: false
+      }
       // navigation: {
       //   nextEl: ".swiper-button-next",
       //   prevEl: ".swiper-button-prev",
       // },
-    });
+    })
   })
-  .catch((err) => console.error(err));
+  .catch((err) => console.error(err))

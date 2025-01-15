@@ -1,10 +1,9 @@
-import "./main.css";
-import "./style.css";
-import "./carousel.js";
-import "./api.js";
-import "./counter.js";
-import "./search.js";
-import "./details.js";
+import "../styles/main.css";
+import "../styles/style.css";
+import "../script/carousel.js";
+import "../script/api.js";
+import "../script/counter.js";
+import "../script/search.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("app").innerHTML = `
@@ -17,8 +16,8 @@ document.addEventListener("DOMContentLoaded", () => {
             <nav class="navbar">
               <ul>
                 <li><a href="./home.html">Home</a></li>
-                <li><a href="./details.html">Movies</a></li>
-                <li><a href="./details.html">tv Shows</a></li>
+                <li><a href="./details.html">About</a></li>
+                <li><a href="./details.html">Favorites</a></li>
               </ul>
               <div class="circle-container">
               <div class="circle">
@@ -29,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
                   <i class="fas fa-times"></i>
                 </button>
               </div>
-            </div>
+              </div>
             </nav>
             <div class="search-bar">
               <form class="search-form">
@@ -40,7 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
               </form>
             </div>
             <div class="buttons btn-button">
-              <a href="./details.html"><button class="btn">SignUp</button></a>
+              <a href="./details.html"><button class="cta">SignUp</button></a>
               <a href="./details.html"><button class="btn">SignIn</button></a>
             </div>
           </div>
@@ -72,7 +71,6 @@ document.addEventListener("DOMContentLoaded", () => {
   </section>
   <h3 class="heading">Popular of the week</h3>   
   <section class="popular-release mySwiper" id="popular-release">
-     
       <div class="container swiper">   
           <div class="new-popular-item">
               <div class="number">1</div>
@@ -87,8 +85,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 </span>
                 <p class="movie-star">⭐ 4.3 | <span>Movies</span></p>
               </div>
-            </div>
-            
+          </div>
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
         </div>
   </section>
 
@@ -96,7 +95,7 @@ document.addEventListener("DOMContentLoaded", () => {
     <h3 class="heading">Latest releases</h3>
 
     <section id="just-release" class="mySwiper swiper">
-      <div id="swiper-wrapper-1" class="container swiper-wrapper">
+      <div id="swiper-wrapper-1" class = "container swiper-wrapper">
         
       </div>
 
