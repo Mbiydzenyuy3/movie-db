@@ -155,6 +155,55 @@
   flex: 1;
 }
 
+/* Movie Details Styles */
+#movie-details-hidden {
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 2rem;
+  margin-top: 2rem;
+  box-shadow: 0 2px 5px #001a;
+}
+
+#movie-details-hidden h2 {
+  margin-bottom: 1rem;
+}
+
+#movie-details-hidden p {
+  margin-bottom: 0.5rem;
+}
+
+#movie-details-hidden button {
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Favorites Styles */
+#favorites {
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 2rem;
+  margin-top: 2rem;
+  box-shadow: 0 2px 5px #001a;
+}
+
+#favorites h2 {
+  margin-bottom: 1rem;
+}
+
+#show-favorites {
+  padding: 0.5rem 1rem;
+  background-color: #fff;
+  color: #333;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
 /* Section headings */
 h2 {
   margin-bottom: 20px;

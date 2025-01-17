@@ -103,7 +103,7 @@ ul {
   cursor: pointer;
 }
 
-#searchButton img {
+#search-button img {
   width: 24px;
   height: 24px;
   display: flex;
@@ -111,7 +111,7 @@ ul {
   justify-content: center;
 }
 
-#searchButton {
+#search-button {
   width: 32px;
   height: 32px;
   border: none;
@@ -126,13 +126,13 @@ input[type="search"]:focus {
   background-color: transparent;
 }
 
-#searchInput {
+#search-input {
   width: 0;
   transition: 1s linear;
   color: #fff;
 }
 
-#searchInput:focus {
+#search-input:focus {
   width: 300px;
   animation: width .3s ease 2s;
 }

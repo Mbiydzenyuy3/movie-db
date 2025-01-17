@@ -12,7 +12,7 @@ fetch('https://api.themoviedb.org/3/trending/movie/day?language=en-US', options)
   .then((res) => res.json())
   .then((data) => {
     console.log(data)
-    const heroSection = document.getElementById('slider')
+    const heroSection = document.querySelector(".hero")
     for (let index = 0; index < 4; index++) {
       const movie = data.results[index]
       const posterPath = movie.poster_path
@@ -102,5 +102,31 @@ fetch('https://api.themoviedb.org/3/trending/movie/day?language=en-US', options)
       //   prevEl: ".swiper-button-prev",
       // },
     })
+
+    const swiperSlide = new Swiper("#brand-logos", {
+      slidesPerView: 4, // Number of logos visible at a time
+      spaceBetween: 5,
+      // autoplay: {
+      //   delay: 6000, // 3 seconds delay
+      //   disableOnInteraction: false,
+      // },
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+    });
+
+    const swiperPopular = new Swiper("#popular-swiper", {
+      slidesPerView: 1, // Number of logos visible at a time
+      spaceBetween: 5,
+      // autoplay: {
+      //   delay: 6000, // 3 seconds delay
+      //   disableOnInteraction: false,
+      // },
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+    });
   })
   .catch((err) => console.error(err))

@@ -1,9 +1,9 @@
-import "../styles/main.css";
-import "../styles/style.css";
-import "../script/carousel.js";
-import "../script/api.js";
-import "../script/counter.js";
-import "../script/search.js";
+import "../styles/main.css"
+import "../styles/style.css"
+import "../script/carousel.js"
+import "../script/api.js"
+import "../script/counter.js"
+import "../script/search.js"
 
 document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("app").innerHTML = `
@@ -32,8 +32,8 @@ document.addEventListener("DOMContentLoaded", () => {
             </nav>
             <div class="search-bar">
               <form class="search-form">
-                <input type="search" id = "searchInput" placeholder="Search by title..." />
-                <button type="button"  class="search-icon" id = "searchButton">
+                <input type="search" id = "search-input" placeholder="search by title..." />
+                <button type="button"  class="search-icon" id = "search-button">
                  <img src="/assets/img/search.svg" alt="">
                 </button>
               </form>
@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
   </header>
 	
 	<section class="mySwiper" id="swiper-item">
-	  <div id="slider" class="swiper-wrapper container">
+	  <div id="slider" class="swiper-wrapper hero container">
 						
 		</div>
 	</section>
@@ -71,7 +71,7 @@ document.addEventListener("DOMContentLoaded", () => {
   </section>
   <h3 class="heading">Popular of the week</h3>   
   <section class="popular-release mySwiper" id="popular-release">
-      <div class="container swiper">   
+      <div class="container swiper" id="popular-swiper">   
           <div class="new-popular-item">
               <div class="number">1</div>
               <div class="image-popular-release">
@@ -88,7 +88,7 @@ document.addEventListener("DOMContentLoaded", () => {
           </div>
           <div class="swiper-button-next"></div>
           <div class="swiper-button-prev"></div>
-        </div>
+      </div>
   </section>
 
   <div class="new-movie-section">
@@ -133,7 +133,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   <footer>
     <div class ="container">
-        <div class="footer">
+      <button id="show-favorites">My Favorites</button>
+      <div class="footer">
       <div class="footer-item-one">
         <div class="footer-heading">
           <h3 class="heading-three-footer">Our platform is trusted by millions & features best updated movies all around the world.
@@ -166,10 +167,10 @@ document.addEventListener("DOMContentLoaded", () => {
     </div>
     </div>
   </footer>
-`;
-});
+`
+})
 
-// setupCounter(document.querySelector("#counter"));
+// setupCounter(document.querySelector("#counter"))
 
 // API for just release movie section
 const options = {
@@ -179,7 +180,7 @@ const options = {
     Authorization:
       "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwYmEwM2JhZjAwODc4YTBhNmE4MDYwN2U1ZGI5NzFmMCIsIm5iZiI6MTczMzc4Mzc4MC4yNTUsInN1YiI6IjY3NTc3MGU0MGFiN2U4MDc3Y2ZiZjFlYyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.XXDs4eNLPoVC8cYP4I4R_ZT48CSvQPpCMqUGOWCPlVk",
   },
-};
+}
 
 fetch(
   "https://api.themoviedb.org/3/discover/tv?include_adult=false&include_null_first_air_dates=false&language=en-US&page=1&sort_by=popularity.desc",
@@ -187,36 +188,36 @@ fetch(
 )
   .then((res) => res.json())
   .then((data) => {
-    console.log(data);
-    const firstSection = document.getElementById("swiper-wrapper-1");
+    console.log(data)
+    const firstSection = document.getElementById("swiper-wrapper-1")
     for (let index = 0; index < data.results.length; index++) {
-      const movie = data.results[index];
+      const movie = data.results[index]
       const posterPath = movie.poster_path
         ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
-        : "https://via.placeholder.com/500x750?text=No+Image+Available";
+        : "https://via.placeholder.com/500x750?text=No+Image+Available"
 
-      const slide = document.createElement("a");
-      slide.href = "details.html?movie_id=" + movie.id;
-      slide.className = "released-movies slide";
-      firstSection.appendChild(slide);
+      const slide = document.createElement("a")
+      slide.href = "details.html?movie_id=" + movie.id
+      slide.className = "released-movies slide"
+      firstSection.appendChild(slide)
 
-      const img = document.createElement("img");
-      img.src = posterPath;
-      img.alt = movie.title;
-      img.className = "movie-poster";
-      slide.appendChild(img);
+      const img = document.createElement("img")
+      img.src = posterPath
+      img.alt = movie.title
+      img.className = "movie-poster"
+      slide.appendChild(img)
 
-      const movieTitle = document.createElement("h4");
-      movieTitle.className = "movie-title";
-      movieTitle.textContent = movie.title;
-      movieTitle.innerHTML = `${movie.original_name}`;
-      slide.appendChild(movieTitle);
+      const movieTitle = document.createElement("h4")
+      movieTitle.className = "movie-title"
+      movieTitle.textContent = movie.title
+      movieTitle.innerHTML = `${movie.original_name}`
+      slide.appendChild(movieTitle)
 
-      const movieParagraph = document.createElement("p");
-      movieParagraph.className = "movie-paragraph";
-      movieParagraph.textContent = movie.paragraph;
-      movieParagraph.innerHTML = `&#11088; ${movie.vote_average} | Action - Movies `;
-      slide.appendChild(movieParagraph);
+      const movieParagraph = document.createElement("p")
+      movieParagraph.className = "movie-paragraph"
+      movieParagraph.textContent = movie.paragraph
+      movieParagraph.innerHTML = `&#11088 ${movie.vote_average} | Action - Movies `
+      slide.appendChild(movieParagraph)
     }
   })
   .then(() => {
@@ -225,28 +226,28 @@ fetch(
         nextEl: ".swiper-button-next",
         prevEl: ".swiper-button-prev",
       },
-    });
+    })
   })
-  .catch((err) => console.error(err));
+  .catch((err) => console.error(err))
 
 document.addEventListener("DOMContentLoaded", function () {
-  const openButton = document.getElementById("open");
-  const closeButton = document.getElementById("close");
-  const searchBar = document.querySelector(".search-bar");
+  const openButton = document.getElementById("open")
+  const closeButton = document.getElementById("close")
+  const searchBar = document.querySelector(".search-bar")
 
   // Show the search bar
   openButton.addEventListener("click", function () {
-    searchBar.style.display = "block"; // Show the search bar
-    openButton.style.display = "none"; // Hide the open button
-    closeButton.style.display = "block"; // Show the close button
-    document.getElementById("searchInput").focus(); // Focus on input field
-  });
+    searchBar.style.display = "block" // Show the search bar
+    openButton.style.display = "none" // Hide the open button
+    closeButton.style.display = "block" // Show the close button
+    document.getElementById("search-input").focus() // Focus on input field
+  })
 
   // Hide the search bar
   closeButton.addEventListener("click", function () {
-    searchBar.style.display = "none"; // Hide the search bar
-    closeButton.style.display = "none"; // Hide the close button
-    openButton.style.display = "block"; // Show the open button again
-    document.getElementById("searchInput").value = ""; // Clear input field
-  });
-});
+    searchBar.style.display = "none" // Hide the search bar
+    closeButton.style.display = "none" // Hide the close button
+    openButton.style.display = "block" // Show the open button again
+    document.getElementById("search-input").value = "" // Clear input field
+  })
+})
