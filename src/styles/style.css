@@ -55,7 +55,7 @@ body {
 
 /* Utility classes */
 .container {
-  width: min(1440px, 100%);
+  width: min(1280px, 100%);
   margin: auto;
   padding: 1rem;
   display: block;
@@ -82,6 +82,8 @@ img {
   position: sticky;
   margin-bottom: -80px;
   padding-block: 0;
+  padding-inline: 16px;
+  background-color: transparent;
 }
 
 .logo {
@@ -111,14 +113,14 @@ ul {
   justify-content: center;
 }
 
-#search-button {
+/* #search-button {
   width: 32px;
   height: 32px;
   border: none;
   background-color: #2bcb82;
   border-radius: 50%;
   padding: 0.2em;
-}
+} */
 
 input[type="search"]:focus {
   outline: none;
@@ -127,15 +129,16 @@ input[type="search"]:focus {
 }
 
 #search-input {
-  width: 0;
+  width: 200px;
+  padding: 5px;
   transition: 1s linear;
   color: #fff;
 }
 
-#search-input:focus {
+/* #search-input:focus {
   width: 300px;
   animation: width .3s ease 2s;
-}
+} */
 
 #hero {
   display: flex;
@@ -263,9 +266,15 @@ input[type="search"]:focus {
   text-align: left;
 }
 
+h4.movie-title {
+  width: 250px;
+  text-align: center;
+}
+
 #hero-container-item {
   position: absolute;
   bottom: 40px;
+  padding-inline: 16px;
   display: flex;
   flex-direction: column;
   gap: 0.5em;
@@ -304,7 +313,7 @@ input[type="search"]:focus {
 
 #just-release .movie-paragraph {
   position: absolute;
-  top: 360px;
+  top: 400px;
   z-index: 1000;
   color: #fff;
   font-weight: 200;
