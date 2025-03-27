@@ -133,6 +133,7 @@ input[type="search"]:focus {
   padding: 5px;
   transition: 1s linear;
   color: #fff;
+  border: 0;
 }
 
 /* #search-input:focus {
