@@ -5,7 +5,7 @@ const options = {
     accept: 'application/json',
     Authorization:
       'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0ZWYzNjNmOWY5YTNjNTUzNTE0OWM5MDk3MGZhMjMxMSIsIm5iZiI6MTczMzUxMDAxOS40MTYsInN1YiI6IjY3NTM0MzgzODcxYTQyYzljMjQ1NDFhNSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.FgU6EplfTnUB-e6GZZfUI7lO0Ad71oYwG54qzjXpozo',
-  }
+  },
 }
 
 fetch(
@@ -43,12 +43,6 @@ fetch(
       movieParagraph.textContent = movie.paragraph
       movieParagraph.innerHTML = `&#11088 ${movie.vote_average} | Mystery - Movies `
       slideWrapper.appendChild(movieParagraph)
-
-      // Add click event to navigate to details page
-      // slideWrapper.addEventListener('click', () => {
-      //   sessionStorage.setItem('selectedMovieId', movie.id) // Store movie ID
-      //   window.location.href = 'details.html?movie_id=' + movie.id // Redirect to details page
-      // })
     }
   })
   .then(() => {
@@ -56,7 +50,7 @@ fetch(
       navigation: {
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev',
-      }
+      },
     })
   })
   .catch((err) => console.error(err))
@@ -78,6 +72,6 @@ document.addEventListener('DOMContentLoaded', () => {
       640: { slidesPerView: 2 },
       768: { slidesPerView: 3 },
       1024: { slidesPerView: 5 },
-    }
+    },
   })
 })
