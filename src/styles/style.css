@@ -136,11 +136,6 @@ input[type="search"]:focus {
   border: 0;
 }
 
-/* #search-input:focus {
-  width: 300px;
-  animation: width .3s ease 2s;
-} */
-
 #hero {
   display: flex;
   transition: transform 1s ease-in-out;

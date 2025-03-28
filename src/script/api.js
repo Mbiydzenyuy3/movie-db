@@ -103,7 +103,6 @@ function populatePopularMovies(movies) {
         )} | <span>Movies</span></p>
       </div>
     `
-
     popularWrapper.appendChild(movieItem)
   })
 
