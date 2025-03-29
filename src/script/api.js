@@ -47,12 +47,12 @@ fetch(
     }
   })
   .then(() => {
-    const swiper = new swiper('#likes', {
+    const swiper = new Swiper('#likes', {
       slidesPerView: 4,
       spaceBetween: 5,
       navigation: {
         nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
+        prevEl: '.swiper-button-prev'
       }
     })
   })
@@ -61,7 +61,7 @@ fetch(
 const POPULAR_MOVIES_URL =
   'https://api.themoviedb.org/3/movie/popular?api_key=4ef363f9f9a3c5535149c90970fa2311&language=en-US&page=1'
 
-async function fetchPopularMovies() {
+async function fetchPopularMovies () {
   try {
     const response = await fetch(POPULAR_MOVIES_URL)
     if (!response.ok) {
@@ -76,7 +76,7 @@ async function fetchPopularMovies() {
   }
 }
 
-function populatePopularMovies(movies) {
+function populatePopularMovies (movies) {
   const popularWrapper = document.querySelector('.new-popular-item')
   popularWrapper.innerHTML = '' // Clear existing content
 
@@ -109,11 +109,11 @@ function populatePopularMovies(movies) {
   addNavigation(popularWrapper)
 }
 
-function addNavigation(wrapper) {
+function addNavigation (wrapper) {
   const items = wrapper.querySelectorAll('.new-popular-item')
   let currentIndex = 0
 
-  function showItem(index) {
+  function showItem (index) {
     items.forEach((item, i) => {
       item.style.display = i === index ? 'block' : 'none'
     })

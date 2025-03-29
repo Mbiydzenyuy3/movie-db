@@ -88,7 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
     })
 
   // Fetch the movie backdrops
-  function loadBackdrop(movieId) {
+  function loadBackdrop (movieId) {
     const backdropUrl = `https://api.themoviedb.org/3/movie/${movieId}/images?api_key=${apiKey}`
 
     fetch(backdropUrl)
@@ -107,7 +107,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Fetch movie credits with cast pictures
-  function loadMovieCredits(movieId) {
+  function loadMovieCredits (movieId) {
     const creditsUrl = `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${apiKey}`
     fetch(creditsUrl)
       .then((response) => response.json())
@@ -148,7 +148,7 @@ document.addEventListener('DOMContentLoaded', () => {
       })
   }
 
-  function loadSimilarMovies(movieId) {
+  function loadSimilarMovies (movieId) {
     const similarMoviesUrl = `https://api.themoviedb.org/3/movie/${movieId}/similar?api_key=${apiKey}&language=en-US&page=1`
     fetch(similarMoviesUrl)
       .then((response) => response.json())

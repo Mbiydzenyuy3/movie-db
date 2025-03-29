@@ -85,8 +85,7 @@ fetch('https://api.themoviedb.org/3/trending/movie/day?language=en-US', options)
                        </button>
                     </a>
                 </div>
-
-        `
+   `
     }
   })
   .then(() => {
@@ -112,8 +111,8 @@ fetch('https://api.themoviedb.org/3/trending/movie/day?language=en-US', options)
       // },
       navigation: {
         nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-      },
+        prevEl: '.swiper-button-prev'
+      }
     })
 
     const swiperPopular = new Swiper('#popular-swiper', {
@@ -125,8 +124,8 @@ fetch('https://api.themoviedb.org/3/trending/movie/day?language=en-US', options)
       // },
       navigation: {
         nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-      },
+        prevEl: '.swiper-button-prev'
+      }
     })
   })
   .catch((err) => console.error(err))

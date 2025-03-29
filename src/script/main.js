@@ -37,13 +37,10 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
           </div>
   </header>
-	
 	<section class='mySwiper' id='swiper-item'>
-	  <div id='slider' class='swiper-wrapper hero container'>
-						
+	  <div id='slider' class='swiper-wrapper hero container'>			
 		</div>
 	</section>
-
   <section id='brand-logos' class='mySwiper swiper'>
         <div class='container swiper-wrapper carousel-slide'>
           <div class='swiper-slide' id='slide-img-wrap'>
@@ -83,47 +80,33 @@ document.addEventListener('DOMContentLoaded', () => {
           <div class='swiper-button-prev'></div>
       </div>
   </section>
-
   <div class='new-movie-section'>
     <h3 class='heading'>Latest releases</h3>
-
     <section id='just-release' class='mySwiper swiper'>
-      <div id='swiper-wrapper-1' class = 'container swiper-wrapper'>
-        
+      <div id='swiper-wrapper-1' class = 'container swiper-wrapper'>  
       </div>
-
       <div class='swiper-button-next'></div>
       <div class='swiper-button-prev'></div>
     </section>
   </div>
-
   <div class='watch-movie-section'>
     <h3 class='heading'> Watchlist </h3>
-
     <section id='watchlist' class='mySwiper swiper'>
-      <div id= 'swiper-wrapper-2' class = 'container swiper-wrapper'>
-      
+      <div id= 'swiper-wrapper-2' class = 'container swiper-wrapper'> 
       </div>
-
       <div class='swiper-button-next'></div>
       <div class='swiper-button-prev'></div>
     </section>
   </div>
-
   <div class='likes-section'>
     <h3 class='heading'>Likes</h3>
-
     <section id='likes' class='mySwiper swiper'>
-    <div id= 'swiper-wrapper-3' class = 'container swiper-wrapper'>
-     
-      
+    <div id= 'swiper-wrapper-3' class = 'container swiper-wrapper'> 
     </div>
-
     <div class='swiper-button-next'></div>
     <div class='swiper-button-prev'></div>
     </section>
   </div>
-
   <footer>
     <div class ='container'>
       <div class='footer'>
@@ -170,8 +153,8 @@ const options = {
   headers: {
     accept: 'application/json',
     Authorization:
-      'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwYmEwM2JhZjAwODc4YTBhNmE4MDYwN2U1ZGI5NzFmMCIsIm5iZiI6MTczMzc4Mzc4MC4yNTUsInN1YiI6IjY3NTc3MGU0MGFiN2U4MDc3Y2ZiZjFlYyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.XXDs4eNLPoVC8cYP4I4R_ZT48CSvQPpCMqUGOWCPlVk',
-  },
+      'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwYmEwM2JhZjAwODc4YTBhNmE4MDYwN2U1ZGI5NzFmMCIsIm5iZiI6MTczMzc4Mzc4MC4yNTUsInN1YiI6IjY3NTc3MGU0MGFiN2U4MDc3Y2ZiZjFlYyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.XXDs4eNLPoVC8cYP4I4R_ZT48CSvQPpCMqUGOWCPlVk'
+  }
 }
 
 fetch(
@@ -217,7 +200,7 @@ fetch(
       navigation: {
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev',
-      },
+      }
     })
   })
   .catch((err) => console.error(err))
