@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('app').innerHTML = `
   <header>
           <div class='container header'>
-            <a href = './index.html' class='logo'>
+            <a href = "./index.html" class='logo'>
                 <img class='main-logo' src=' /assets/img/Logo.png' alt='logo'/>
                 <img class='logo-name' src=' /assets/img/SaintStream.png' alt='logo'/> 
             </a>

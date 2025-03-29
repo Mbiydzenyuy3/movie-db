@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
       document.querySelector('#details-page').innerHTML = `
          <header>
     <div class='header'>
-      <a href = './index.html' class='logo'>
+      <a href = "./index.html" class='logo'>
         <img class='main-logo' src='/assets/img/Logo.png' alt='logo' />
         <img class='logo-name' src='/assets/img/SaintStream.png' alt='logo' />
       </a>
