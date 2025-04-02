@@ -115,7 +115,7 @@ fetch('https://api.themoviedb.org/3/trending/movie/day?language=en-US', options)
       }
     })
 
-    const swiperPopular = new Swiper('#popular-swiper', {
+    const swiperPopular = new Swiper("#popular-swiper", {
       slidesPerView: 1, // Number of logos visible at a time
       spaceBetween: 5,
       // autoplay: {
@@ -123,9 +123,9 @@ fetch('https://api.themoviedb.org/3/trending/movie/day?language=en-US', options)
       //   disableOnInteraction: false,
       // },
       navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev'
-      }
-    })
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+    });
   })
   .catch((err) => console.error(err))

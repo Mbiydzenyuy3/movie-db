@@ -15,46 +15,44 @@ fetch(
 )
   .then((res) => res.json())
   .then((data) => {
-    const movieList = document.getElementById('swiper-wrapper-3')
+    const movieList = document.getElementById('swiper-wrapper-3');
 
     for (let index = 0; index < data.results.length; index++) {
-      const movie = data.results[index]
+      const movie = data.results[index];
       const posterPath = movie.poster_path
         ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
-        : 'https://via.placeholder.com/500x750?text=No+Image+Available'
+        : 'https://via.placeholder.com/500x750?text=No+Image+Available';
 
-      const slide = document.createElement('a')
-      slide.href = 'details.html?movie_id=' + movie.id
-      slide.className = 'released-movies swiper-slide'
-      movieList.appendChild(slide)
+      const slide = document.createElement('a');
+      slide.href = 'details.html?movie_id=' + movie.id;
+      slide.className = 'released-movies swiper-slide';
+      movieList.appendChild(slide);
 
-      const img = document.createElement('img')
-      img.src = posterPath
-      img.alt = movie.title
-      img.className = 'movie-poster-one'
-      slide.appendChild(img)
+      const img = document.createElement('img');
+      img.src = posterPath;
+      img.alt = movie.title;
+      img.className = 'movie-poster-one';
+      slide.appendChild(img);
 
-      const movieTitle = document.createElement('h4')
-      movieTitle.className = 'movie-title'
-      movieTitle.textContent = movie.title
-      slide.appendChild(movieTitle)
+      const movieTitle = document.createElement('h4');
+      movieTitle.className = 'movie-title';
+      movieTitle.textContent = movie.title;
+      slide.appendChild(movieTitle);
 
-      const movieParagraph = document.createElement('p')
-      movieParagraph.className = 'movie-paragraph'
-      movieParagraph.textContent = movie.paragraph
-      movieParagraph.innerHTML = `&#11088 ${movie.vote_average} | Mystery - Movies `
-      slide.appendChild(movieParagraph)
+      const movieParagraph = document.createElement('p');
+      movieParagraph.className = 'movie-paragraph';
+      movieParagraph.textContent = movie.paragraph;
+      movieParagraph.innerHTML = `&#11088 ${movie.vote_average} | Mystery - Movies `;
+      slide.appendChild(movieParagraph);
     }
   })
   .then(() => {
     const swiper = new Swiper('#likes', {
-      slidesPerView: 4,
-      spaceBetween: 5,
       navigation: {
         nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev'
-      }
-    })
+        prevEl: '.swiper-button-prev',
+      },
+    });
   })
   .catch((err) => console.error(err))
 

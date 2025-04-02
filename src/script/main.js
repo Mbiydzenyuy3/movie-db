@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('app').innerHTML = `
   <header>
           <div class='container header'>
-            <a href = "./index.html" class='logo'>
+            <a href = './index.html' class='logo'>
                 <img class='main-logo' src=' /assets/img/Logo.png' alt='logo'/>
                 <img class='logo-name' src=' /assets/img/SaintStream.png' alt='logo'/> 
             </a>
@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
   </section>
   <h3 class='heading'>Popular of the week</h3>   
   <section class='popular-release mySwiper' id='popular-release'>
-      <div class='container swiper' id='popular-swiper'>   
+      <div class='container swiper-wrapper' id='popular-swiper'>   
           <div class='new-popular-item'>
               <div class='number'>1</div>
               <div class='image-popular-release'>
@@ -101,7 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
   <div class='likes-section'>
     <h3 class='heading'>Likes</h3>
     <section id='likes' class='mySwiper swiper'>
-    <div id= 'swiper-wrapper-3' class = 'container swiper-wrapper'> 
+    <div id='swiper-wrapper-3' class ='container swiper-wrapper'> 
     </div>
     <div class='swiper-button-next'></div>
     <div class='swiper-button-prev'></div>
@@ -173,7 +173,7 @@ fetch(
 
       const slide = document.createElement('a')
       slide.href = 'details.html?movie_id=' + movie.id
-      slide.className = 'released-movies slide'
+      slide.className = 'released-movies swiper-slide';
       firstSection.appendChild(slide)
 
       const img = document.createElement('img')
