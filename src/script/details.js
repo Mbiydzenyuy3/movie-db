@@ -1,33 +1,33 @@
-document.addEventListener('DOMContentLoaded', () => {
-  const apiKey = '4ef363f9f9a3c5535149c90970fa2311'
-  const urlParams = new URLSearchParams(window.location.search)
-  const movieId = urlParams.get('movie_id')
+document.addEventListener("DOMContentLoaded", () => {
+  const apiKey = "4ef363f9f9a3c5535149c90970fa2311";
+  const urlParams = new URLSearchParams(window.location.search);
+  const movieId = urlParams.get("movie_id");
 
   if (!movieId) {
-    document.querySelector('#details-page').innerHTML =
-      '<h2>Movie ID is missing in the URL!</h2>'
-    return
+    document.querySelector("#details-page").innerHTML =
+      "<h2>Movie ID is missing in the URL!</h2>";
+    return;
   }
 
   // Fetch the movie details
-  const apiUrl = `https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}&language=en-US`
+  const apiUrl = `https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}&language=en-US`;
 
   fetch(apiUrl)
     .then((response) => response.json())
     .then((data) => {
       if (data.status_code === 34) {
-        document.querySelector('#details-page').innerHTML =
-          '<h2>Movie not found!</h2>'
-        return
+        document.querySelector("#details-page").innerHTML =
+          "<h2>Movie not found!</h2>";
+        return;
       }
 
       // Placeholder for the poster while we load the backdrop
       const moviePoster = data.poster_path
         ? `https://image.tmdb.org/t/p/w500${data.poster_path}`
-        : '/assets/img/placeholder-poster.jpg'
+        : "/assets/img/placeholder-poster.jpg";
 
       // Set the movie poster for now
-      document.querySelector('#details-page').innerHTML = `
+      document.querySelector("#details-page").innerHTML = `
          <header>
     <div class='header'>
       <a href = "./index.html" class='logo'>
@@ -72,58 +72,58 @@ document.addEventListener('DOMContentLoaded', () => {
             <div id='similarMoviesContainer'></div>
           </div>
         </section>
-      `
+      `;
 
       // Fetch the backdrops and replace the movie poster if a backdrop exists
-      loadBackdrop(movieId)
+      loadBackdrop(movieId);
 
       // Fetch movie credits and similar movies
-      loadMovieCredits(movieId)
-      loadSimilarMovies(movieId)
+      loadMovieCredits(movieId);
+      loadSimilarMovies(movieId);
     })
     .catch((error) => {
-      console.error('Error fetching movie details:', error)
-      document.querySelector('#details-page').innerHTML =
-        '<h2>An error occurred while fetching movie details.</h2>'
-    })
+      console.error("Error fetching movie details:", error);
+      document.querySelector("#details-page").innerHTML =
+        "<h2>An error occurred while fetching movie details.</h2>";
+    });
 
   // Fetch the movie backdrops
-  function loadBackdrop (movieId) {
-    const backdropUrl = `https://api.themoviedb.org/3/movie/${movieId}/images?api_key=${apiKey}`
+  function loadBackdrop(movieId) {
+    const backdropUrl = `https://api.themoviedb.org/3/movie/${movieId}/images?api_key=${apiKey}`;
 
     fetch(backdropUrl)
       .then((response) => response.json())
       .then((data) => {
         if (data.backdrops && data.backdrops.length > 0) {
           // Use the first backdrop as the movie poster
-          const backdropPath = data.backdrops[0].file_path
-          const backdropImage = `https://image.tmdb.org/t/p/original${backdropPath}`
-          document.getElementById('moviePoster').src = backdropImage
+          const backdropPath = data.backdrops[0].file_path;
+          const backdropImage = `https://image.tmdb.org/t/p/original${backdropPath}`;
+          document.getElementById("moviePoster").src = backdropImage;
         }
       })
       .catch((error) => {
-        console.error('Error fetching movie backdrops:', error)
-      })
+        console.error("Error fetching movie backdrops:", error);
+      });
   }
 
   // Fetch movie credits with cast pictures
-  function loadMovieCredits (movieId) {
-    const creditsUrl = `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${apiKey}`
+  function loadMovieCredits(movieId) {
+    const creditsUrl = `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${apiKey}`;
     fetch(creditsUrl)
       .then((response) => response.json())
       .then((data) => {
-        const castContainer = document.querySelector('#movieCast')
-        castContainer.innerHTML = '' // Clear existing content
+        const castContainer = document.querySelector("#movieCast");
+        castContainer.innerHTML = ""; // Clear existing content
 
         // Limit to the top 6 cast members
-        const topCast = data.cast.slice(0, 10)
+        const topCast = data.cast.slice(0, 10);
 
         if (topCast.length > 0) {
           topCast.forEach((member) => {
             // Get the profile picture or a placeholder if not available
             const profilePicture = member.profile_path
               ? `https://image.tmdb.org/t/p/w185${member.profile_path}`
-              : '/assets/img/placeholder-profile.jpg'
+              : "/assets/img/placeholder-profile.jpg";
 
             // Create the cast card HTML
             const castCard = `
@@ -134,45 +134,45 @@ document.addEventListener('DOMContentLoaded', () => {
 						<p  class='cast-role line-clamp-1'>${member.character}</p>
 					 </div>
               </div>
-            `
+            `;
 
             // Append to the cast container
-            castContainer.innerHTML += castCard
-          })
+            castContainer.innerHTML += castCard;
+          });
         } else {
-          castContainer.innerHTML = '<p>No cast information available.</p>'
+          castContainer.innerHTML = "<p>No cast information available.</p>";
         }
       })
       .catch((error) => {
-        console.error('Error fetching credits:', error)
-      })
+        console.error("Error fetching credits:", error);
+      });
   }
 
-  function loadSimilarMovies (movieId) {
-    const similarMoviesUrl = `https://api.themoviedb.org/3/movie/${movieId}/similar?api_key=${apiKey}&language=en-US&page=1`
+  function loadSimilarMovies(movieId) {
+    const similarMoviesUrl = `https://api.themoviedb.org/3/movie/${movieId}/similar?api_key=${apiKey}&language=en-US&page=1`;
     fetch(similarMoviesUrl)
       .then((response) => response.json())
       .then((data) => {
-        const container = document.getElementById('similarMoviesContainer')
-        container.innerHTML = '' // Clear existing movies
+        const container = document.getElementById("similarMoviesContainer");
+        container.innerHTML = ""; // Clear existing movies
         if (data.results.length > 0) {
           data.results.forEach((movie) => {
             const moviePoster = movie.poster_path
               ? `https://image.tmdb.org/t/p/w200${movie.poster_path}`
-              : '/assets/img/placeholder-poster.jpg'
+              : "/assets/img/placeholder-poster.jpg";
             container.innerHTML += `
               <div class='similar-movie'>
                 <img src='${moviePoster}' alt='${movie.title}' />
                 <p>${movie.title}</p>
               </div>
-            `
-          })
+            `;
+          });
         } else {
-          container.innerHTML = '<p>No similar movies found.</p>'
+          container.innerHTML = "<p>No similar movies found.</p>";
         }
       })
       .catch((error) => {
-        console.error('Error fetching similar movies:', error)
-      })
+        console.error("Error fetching similar movies:", error);
+      });
   }
-})
+});

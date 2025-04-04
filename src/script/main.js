@@ -1,12 +1,11 @@
-import '../styles/main.css'
-import '../styles/style.css'
-import '../script/carousel.js'
-import '../script/api.js'
-import '../script/counter.js'
-import '../script/search.js'
+import "../styles/main.css";
+import "../styles/style.css";
+import "../script/carousel.js";
+import "../script/api.js";
+import "../script/counter.js";
 
-document.addEventListener('DOMContentLoaded', () => {
-  document.getElementById('app').innerHTML = `
+document.addEventListener("DOMContentLoaded", () => {
+  document.getElementById("app").innerHTML = `
   <header>
           <div class='container header'>
             <a href = './index.html' class='logo'>
@@ -15,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
             </a>
             <nav class='navbar'>
               <ul>
-                <li><a href='./home.html'>Home</a></li>
+                <li><a href='./index.html'>Home</a></li>
                 <li><a href='./details.html'>About</a></li>
                 <li><a href='./details.html'>Favorites</a></li>
               </ul>
@@ -30,9 +29,10 @@ document.addEventListener('DOMContentLoaded', () => {
               </div>
               </div>
             </nav>
-            <div class='search-bar'>
-              <form class='search-form'>
-                <input type='search' id = 'search-input' placeholder='search by title...' />
+            <div id='search-bar'>
+              <form id='search-form'>
+                <input type='search' id ='search-input' placeholder='search by title...' />
+                
               </form>
             </div>
           </div>
@@ -142,87 +142,127 @@ document.addEventListener('DOMContentLoaded', () => {
     </div>
     </div>
   </footer>
-`
-})
+`;
+});
+
+const Api_Key = import.meta.env.VITE_BASE_API_KEY;
+const Base_url = import.meta.env.VITE_BASE_URL;
+const IMG_PATH = import.meta.env.VITE_IMG_PATH;
 
 // setupCounter(document.querySelector('#counter'))
 
 // API for just release movie section
 const options = {
-  method: 'GET',
+  method: "GET",
   headers: {
-    accept: 'application/json',
+    accept: "application/json",
     Authorization:
-      'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwYmEwM2JhZjAwODc4YTBhNmE4MDYwN2U1ZGI5NzFmMCIsIm5iZiI6MTczMzc4Mzc4MC4yNTUsInN1YiI6IjY3NTc3MGU0MGFiN2U4MDc3Y2ZiZjFlYyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.XXDs4eNLPoVC8cYP4I4R_ZT48CSvQPpCMqUGOWCPlVk'
-  }
-}
+      "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwYmEwM2JhZjAwODc4YTBhNmE4MDYwN2U1ZGI5NzFmMCIsIm5iZiI6MTczMzc4Mzc4MC4yNTUsInN1YiI6IjY3NTc3MGU0MGFiN2U4MDc3Y2ZiZjFlYyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.XXDs4eNLPoVC8cYP4I4R_ZT48CSvQPpCMqUGOWCPlVk",
+  },
+};
 
 fetch(
-  'https://api.themoviedb.org/3/discover/tv?include_adult=false&include_null_first_air_dates=false&language=en-US&page=1&sort_by=popularity.desc',
+  `${Base_url}/discover/tv?include_adult=false&include_null_first_air_dates=false&language=en-US&page=1&sort_by=popularity.desc`,
   options
 )
   .then((res) => res.json())
   .then((data) => {
-    console.log(data)
-    const firstSection = document.getElementById('swiper-wrapper-1')
+    console.log(data);
+    const firstSection = document.getElementById("swiper-wrapper-1");
     for (let index = 0; index < data.results.length; index++) {
-      const movie = data.results[index]
+      const movie = data.results[index];
       const posterPath = movie.poster_path
-        ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
-        : 'https://via.placeholder.com/500x750?text=No+Image+Available'
+        ? `${IMG_PATH}${movie.poster_path}`
+        : "https://via.placeholder.com/500x750?text=No+Image+Available";
 
-      const slide = document.createElement('a')
-      slide.href = 'details.html?movie_id=' + movie.id
-      slide.className = 'released-movies swiper-slide';
-      firstSection.appendChild(slide)
+      const slide = document.createElement("a");
+      slide.href = "details.html?movie_id=" + movie.id;
+      slide.className = "released-movies swiper-slide";
+      firstSection.appendChild(slide);
 
-      const img = document.createElement('img')
-      img.src = posterPath
-      img.alt = movie.title
-      img.className = 'movie-poster'
-      slide.appendChild(img)
+      const img = document.createElement("img");
+      img.src = posterPath;
+      img.alt = movie.title;
+      img.className = "movie-poster";
+      slide.appendChild(img);
 
-      const movieTitle = document.createElement('h4')
-      movieTitle.className = 'movie-title'
-      movieTitle.textContent = movie.title
-      movieTitle.innerHTML = `${movie.original_name}`
-      slide.appendChild(movieTitle)
+      const movieTitle = document.createElement("h4");
+      movieTitle.className = "movie-title";
+      movieTitle.textContent = movie.title;
+      movieTitle.innerHTML = `${movie.original_name}`;
+      slide.appendChild(movieTitle);
 
-      const movieParagraph = document.createElement('p')
-      movieParagraph.className = 'movie-paragraph'
-      movieParagraph.textContent = movie.paragraph
-      movieParagraph.innerHTML = `&#11088 ${movie.vote_average} | Action - Movies `
-      slide.appendChild(movieParagraph)
+      const movieParagraph = document.createElement("p");
+      movieParagraph.className = "movie-paragraph";
+      movieParagraph.textContent = movie.paragraph;
+      movieParagraph.innerHTML = `&#11088 ${movie.vote_average} | Action - Movies `;
+      slide.appendChild(movieParagraph);
     }
   })
   .then(() => {
-    const swiper = new Swiper('#just-release', {
+    const swiper = new Swiper("#just-release", {
       navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-      }
-    })
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+    });
   })
-  .catch((err) => console.error(err))
+  .catch((err) => console.error(err));
 
-document.addEventListener('DOMContentLoaded', function () {
-  const openButton = document.getElementById('open')
-  const closeButton = document.getElementById('close')
-  const searchBar = document.querySelector('.search-bar')
+document.addEventListener("DOMContentLoaded", function () {
+  const openButton = document.getElementById("open");
+  const closeButton = document.getElementById("close");
+  const searchBar = document.querySelector(".search-bar");
 
   // Show the search bar
-  openButton.addEventListener('click', function () {
-    searchBar.style.display = 'block' // Show the search bar
-    openButton.style.display = 'none' // Hide the open button
-    closeButton.style.display = 'block' // Show the close button
-    document.getElementById('search-input').focus() // Focus on input field
-  })
+  openButton.addEventListener("click", function () {
+    searchBar.style.display = "block"; // Show the search bar
+    openButton.style.display = "none"; // Hide the open button
+    closeButton.style.display = "block"; // Show the close button
+    document.getElementById("search-input").focus().value = ""; // Focus on input field
+  });
 
   // Hide the search bar
-  closeButton.addEventListener('click', function () {
-    searchBar.style.display = 'none' // Hide the search bar
-    closeButton.style.display = 'none' // Hide the close button
-    openButton.style.display = 'block' // Show the open button again
-    document.getElementById('search-input').value = '' // Clear input field
-  })
-})
+  closeButton.addEventListener("click", function () {
+    searchBar.style.display = "none"; // Hide the search bar
+    closeButton.style.display = "none"; // Hide the close button
+    openButton.style.display = "block"; // Show the open button again
+  });
+});
+
+const searchInput = document.getElementById("search-input");
+// const searchBtn = document.getElementById("search-btn");
+
+// searchBtn.addEventListener("click", () => {
+//   searchInput.classList.toggle("active");
+// });
+
+const suggestionsDiv = document.getElementById("suggestion");
+
+searchInput.addEventListener("keypress", async (e) => {
+  if (e.key === "Enter") {
+    const query = searchInput.value.trim().toLowercase();
+
+    if (query) {
+      await fetchSuggestionDiv(query);
+      suggestionsDiv.style.display = "block";
+      suggestionsDiv.style.overflowY = "scroll";
+    } else {
+      searchResults.style.display = "none";
+    }
+  }
+});
+
+// fetch movie data from TMDB
+async function fetchSuggestionDiv(query) {
+  try {
+    const response = await fetch(
+      `${Base_url}/search/movie?ap_key=${Api_Key}&query=${query}`
+    );
+    console.log(response);
+    const data = await response.json();
+    displaySearchInput(data.result);
+  } catch (error) {
+    throw new error("Error fetching search results");
+  }
+}
