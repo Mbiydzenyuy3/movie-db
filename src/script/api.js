@@ -2,90 +2,90 @@
 // const likedMovies = []
 // const favoriteMovies = []
 
-const api_key = import.meta.env.VITE_BASE_API_KEY;
-const Base_url = import.meta.env.VITE_BASE_URL;
-const IMG_PATH = import.meta.env.VITE_IMG_PATH;
+const api_key = import.meta.env.VITE_BASE_API_KEY
+const Base_url = import.meta.env.VITE_BASE_URL
+const IMG_PATH = import.meta.env.VITE_IMG_PATH
 
 const options = {
-  method: "GET",
+  method: 'GET',
   headers: {
-    accept: "application/json",
+    accept: 'application/json',
     Authorization:
-      "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0ZWYzNjNmOWY5YTNjNTUzNTE0OWM5MDk3MGZhMjMxMSIsIm5iZiI6MTczMzUxMDAxOS40MTYsInN1YiI6IjY3NTM0MzgzODcxYTQyYzljMjQ1NDFhNSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.FgU6EplfTnUB-e6GZZfUI7lO0Ad71oYwG54qzjXpozo",
-  },
-};
+      'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0ZWYzNjNmOWY5YTNjNTUzNTE0OWM5MDk3MGZhMjMxMSIsIm5iZiI6MTczMzUxMDAxOS40MTYsInN1YiI6IjY3NTM0MzgzODcxYTQyYzljMjQ1NDFhNSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.FgU6EplfTnUB-e6GZZfUI7lO0Ad71oYwG54qzjXpozo',
+  }
+}
 fetch(
-  "https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1",
+  'https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1',
   options
 )
   .then((res) => res.json())
   .then((data) => {
-    const movieList = document.getElementById("swiper-wrapper-3");
+    const movieList = document.getElementById('swiper-wrapper-3')
 
     for (let index = 0; index < data.results.length; index++) {
-      const movie = data.results[index];
+      const movie = data.results[index]
       const posterPath = movie.poster_path
         ? `${IMG_PATH}${movie.poster_path}`
-        : "https://via.placeholder.com/500x750?text=No+Image+Available";
+        : 'https://via.placeholder.com/500x750?text=No+Image+Available'
 
-      const slide = document.createElement("a");
-      slide.href = "details.html?movie_id=" + movie.id;
-      slide.className = "released-movies swiper-slide";
-      movieList.appendChild(slide);
+      const slide = document.createElement('a')
+      slide.href = 'details.html?movie_id=' + movie.id
+      slide.className = 'released-movies swiper-slide'
+      movieList.appendChild(slide)
 
-      const img = document.createElement("img");
-      img.src = posterPath;
-      img.alt = movie.title;
-      img.className = "movie-poster-one";
-      slide.appendChild(img);
+      const img = document.createElement('img')
+      img.src = posterPath
+      img.alt = movie.title
+      img.className = 'movie-poster-one'
+      slide.appendChild(img)
 
-      const movieTitle = document.createElement("h4");
-      movieTitle.className = "movie-title";
-      movieTitle.textContent = movie.title;
-      slide.appendChild(movieTitle);
+      const movieTitle = document.createElement('h4')
+      movieTitle.className = 'movie-title'
+      movieTitle.textContent = movie.title
+      slide.appendChild(movieTitle)
 
-      const movieParagraph = document.createElement("p");
-      movieParagraph.className = "movie-paragraph";
-      movieParagraph.textContent = movie.paragraph;
-      movieParagraph.innerHTML = `&#11088 ${movie.vote_average} | Mystery - Movies `;
-      slide.appendChild(movieParagraph);
+      const movieParagraph = document.createElement('p')
+      movieParagraph.className = 'movie-paragraph'
+      movieParagraph.textContent = movie.paragraph
+      movieParagraph.innerHTML = `&#11088 ${movie.vote_average} | Mystery - Movies `
+      slide.appendChild(movieParagraph)
     }
   })
   .then(() => {
-    const swiper = new Swiper("#likes", {
+    const swiper = new Swiper('#likes', {
       navigation: {
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev",
-      },
-    });
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      }
+    })
   })
-  .catch((err) => console.error(err));
+  .catch((err) => console.error(err))
 
-const POPULAR_MOVIES_URL = `${Base_url}/movie/popular?api_key=${api_key}&language=en-US&page=1`;
+const POPULAR_MOVIES_URL = `${Base_url}/movie/popular?api_key=${api_key}&language=en-US&page=1`
 
 async function fetchPopularMovies() {
   try {
-    const response = await fetch(POPULAR_MOVIES_URL);
+    const response = await fetch(POPULAR_MOVIES_URL)
     if (!response.ok) {
-      throw new Error(`Failed to fetch popular movies: ${response.status}`);
+      throw new Error(`Failed to fetch popular movies: ${response.status}`)
     }
 
-    const data = await response.json();
-    const movies = data.results || [];
-    populatePopularMovies(movies);
+    const data = await response.json()
+    const movies = data.results || []
+    populatePopularMovies(movies)
   } catch (error) {
-    console.error("Error fetching popular movies:", error);
+    console.error('Error fetching popular movies:', error)
   }
 }
 
 function populatePopularMovies(movies) {
-  const popularWrapper = document.querySelector(".new-popular-item");
-  popularWrapper.innerHTML = ""; // Clear existing content
+  const popularWrapper = document.querySelector('.new-popular-item')
+  popularWrapper.innerHTML = '' // Clear existing content
 
   movies.forEach((movie, index) => {
-    const movieItem = document.createElement("a");
-    movieItem.href = "details.html?movie_id=" + movie.id;
-    movieItem.className = "new-popular-item";
+    const movieItem = document.createElement('a')
+    movieItem.href = 'details.html?movie_id=' + movie.id
+    movieItem.className = 'new-popular-item'
 
     movieItem.innerHTML = `
       <div class='number'>${index + 1}</div>
@@ -95,61 +95,61 @@ function populatePopularMovies(movies) {
         }' alt='${movie.title}'>
       </div>
       <div class='release-overwiew'>
-        <div class='pg-age'>${movie.adult ? "R" : "PG-13"}</div>
+        <div class='pg-age'>${movie.adult ? 'R' : 'PG-13'}</div>
          <h4 class='new-release-title'>${movie.title}</h4>
         <span class='movie-genre'>
-          <p>${movie.genre_ids.slice(0, 2).join(", ") || "Unknown Genre"}</p>
+          <p>${movie.genre_ids.slice(0, 2).join(', ') || 'Unknown Genre'}</p>
         </span>
         <p class='movie-star'>⭐ ${movie.vote_average.toFixed(
           1
         )} | <span>Movies</span></p>
       </div>
-    `;
-    popularWrapper.appendChild(movieItem);
-  });
+    `
+    popularWrapper.appendChild(movieItem)
+  })
 
-  addNavigation(popularWrapper);
+  addNavigation(popularWrapper)
 }
 
 function addNavigation(wrapper) {
-  const items = wrapper.querySelectorAll(".new-popular-item");
-  let currentIndex = 0;
+  const items = wrapper.querySelectorAll('.new-popular-item')
+  let currentIndex = 0
 
   function showItem(index) {
     items.forEach((item, i) => {
-      item.style.display = i === index ? "block" : "none";
-    });
+      item.style.display = i === index ? 'block' : 'none'
+    })
   }
 
-  wrapper.querySelector(".prev").addEventListener("click", () => {
-    currentIndex = (currentIndex - 1 + items.length) % items.length;
-    showItem(currentIndex);
-  });
+  wrapper.querySelector('.prev').addEventListener('click', () => {
+    currentIndex = (currentIndex - 1 + items.length) % items.length
+    showItem(currentIndex)
+  })
 
-  wrapper.querySelector(".next").addEventListener("click", () => {
-    currentIndex = (currentIndex + 1) % items.length;
-    showItem(currentIndex);
-  });
+  wrapper.querySelector('.next').addEventListener('click', () => {
+    currentIndex = (currentIndex + 1) % items.length
+    showItem(currentIndex)
+  })
 
   // Initialize the first item
-  showItem(currentIndex);
+  showItem(currentIndex)
 }
 
 // Fetch and populate popular movies
-fetchPopularMovies();
+fetchPopularMovies()
 async function fetchSuggestionDiv(query) {
   try {
     const response = await fetch(
       `${Base_url}/search/movie?api_key=${Api_Key}&query=${query}`
-    ); // Fixed typo: ap_key -> api_key
+    ) // Fixed typo: ap_key -> api_key
 
     if (!response.ok) {
-      throw new Error(`Failed to fetch search results: ${response.status}`);
+      throw new Error(`Failed to fetch search results: ${response.status}`)
     }
 
-    const data = await response.json();
-    displaySearchInput(data.results);
+    const data = await response.json()
+    displaySearchInput(data.results)
   } catch (error) {
-    console.error("Error fetching search results:", error);
+    console.error('Error fetching search results:', error)
   }
 }

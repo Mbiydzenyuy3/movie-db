@@ -1,4 +1,5 @@
 /* details page styles */
+
 #details-page {
   display: flex;
   flex-direction: column;
@@ -45,6 +46,7 @@
   background-repeat: no-repeat;
   background-position: 10% 25%;
   background-size: cover;
+
   /* aspect-ratio: 16 / 9; */
 }
 
@@ -112,6 +114,7 @@
 }
 
 /* logo carousel here */
+
 .logo-carousel {
   display: flex;
   overflow: hidden;
@@ -134,6 +137,7 @@
 }
 
 /* Movie details section */
+
 #movie-details {
   display: flex;
   flex-direction: column;
@@ -155,6 +159,7 @@
 }
 
 /* Movie Details Styles */
+
 #movie-details-hidden {
   background-color: #fff;
   border-radius: 5px;
@@ -182,6 +187,7 @@
 }
 
 /* Favorites Styles */
+
 #favorites {
   background-color: #fff;
   border-radius: 5px;
@@ -204,6 +210,7 @@
 }
 
 /* Section headings */
+
 h2 {
   margin-bottom: 20px;
   border-bottom: 2px solid #444;
@@ -211,6 +218,7 @@ h2 {
 }
 
 /* Cast and similar movies sections */
+
 #movie-cast,
 #similar-movies {
   display: flex;
@@ -244,6 +252,7 @@ h2 {
 }
 
 /* Cast and similar movies text */
+
 #movie-cast p,
 #similar-movies p {
   margin-top: 10px;
@@ -251,6 +260,7 @@ h2 {
 }
 
 /* slider styles */
+
 .slider {
   position: relative;
   width: 85%;

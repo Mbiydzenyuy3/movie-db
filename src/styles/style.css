@@ -271,7 +271,7 @@ input[type="search"]:focus {
   width: fit-content;
   font-size: 2rem;
   font-weight: 800;
-
+  border: 0;
 }
 
 .hero-movie-title,
