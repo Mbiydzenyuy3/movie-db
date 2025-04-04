@@ -8,14 +8,13 @@ const options = {
   }
 }
 
-const api_key = import.meta.env.VITE_BASE_API_KEY
-const Base_url = import.meta.env.VITE_BASE_URL
+// const API_KEY = import.meta.env.VITE_BASE_API_KEY
+ const BASE_URL = import.meta.env.VITE_BASE_URL
 const IMG_PATH = import.meta.env.VITE_IMG_PATH
 
-fetch(`${Base_url}/movie/popular?language=en-US&page=1`, options)
+fetch(`${BASE_URL}/movie/popular?language=en-US&page=1`, options)
   .then((res) => res.json())
   .then((data) => {
-    console.log(data)
     const firstSection = document.getElementById('swiper-wrapper-2')
     for (let index = 0; index < data.results.length; index++) {
       const movie = data.results[index]
@@ -54,7 +53,7 @@ fetch(`${Base_url}/movie/popular?language=en-US&page=1`, options)
       },
     })
   })
-  .catch((err) => console.error(err))
+  .catch((err) => {throw new Error(err)})
 
 document.addEventListener('DOMContentLoaded', () => {
   new Swiper('.logo-carousel', {

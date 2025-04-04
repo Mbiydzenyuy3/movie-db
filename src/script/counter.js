@@ -11,7 +11,6 @@ const options = {
 fetch('https://api.themoviedb.org/3/trending/movie/day?language=en-US', options)
   .then((res) => res.json())
   .then((data) => {
-    console.log(data)
     const heroSection = document.querySelector('.hero')
     for (let index = 0; index < 4; index++) {
       const movie = data.results[index]

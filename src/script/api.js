@@ -2,8 +2,8 @@
 // const likedMovies = []
 // const favoriteMovies = []
 
-const api_key = import.meta.env.VITE_BASE_API_KEY
-const Base_url = import.meta.env.VITE_BASE_URL
+const API_KEY = import.meta.env.VITE_BASE_API_KEY
+const BASE_URL = import.meta.env.VITE_BASE_URL
 const IMG_PATH = import.meta.env.VITE_IMG_PATH
 
 const options = {
@@ -59,9 +59,9 @@ fetch(
       }
     })
   })
-  .catch((err) => console.error(err))
+  .catch((err) => {throw new Error(err)})
 
-const POPULAR_MOVIES_URL = `${Base_url}/movie/popular?api_key=${api_key}&language=en-US&page=1`
+const POPULAR_MOVIES_URL = `${BASE_URL}/movie/popular?api_key=${API_KEY}&language=en-US&page=1`
 
 async function fetchPopularMovies() {
   try {
@@ -74,7 +74,7 @@ async function fetchPopularMovies() {
     const movies = data.results || []
     populatePopularMovies(movies)
   } catch (error) {
-    console.error('Error fetching popular movies:', error)
+   throw new Error('Error fetching popular movies:', error)
   }
 }
 
@@ -140,7 +140,7 @@ fetchPopularMovies()
 async function fetchSuggestionDiv(query) {
   try {
     const response = await fetch(
-      `${Base_url}/search/movie?api_key=${Api_Key}&query=${query}`
+      `${Base_url}/search/movie?api_key=${Api_key}&query=${query}`
     ) // Fixed typo: ap_key -> api_key
 
     if (!response.ok) {
@@ -150,6 +150,6 @@ async function fetchSuggestionDiv(query) {
     const data = await response.json()
     displaySearchInput(data.results)
   } catch (error) {
-    console.error('Error fetching search results:', error)
+    throw new Error('Error fetching search results:', error)
   }
 }

@@ -1,5 +1,5 @@
-const Api_Key = import.meta.env.VITE_BASE_API_KEY
-const Base_url = import.meta.env.VITE_BASE_URL
+const API_KEY = import.meta.env.VITE_BASE_API_KEY
+const BASE_URL = import.meta.env.VITE_BASE_URL
 // const IMG_PATH = import.meta.env.VITE_IMG_PATH
 
 // Function to setup search bar functionality
@@ -38,7 +38,7 @@ function setupSearchBar() {
   async function fetchSuggestionDiv(query) {
     try {
       const response = await fetch(
-        `${Base_url}/search/movie?api_key=${Api_Key}&query=${query}`
+        `${BASE_URL}/search/movie?api_key=${API_KEY}&query=${query}`
       )
       const data = await response.json()
       return data.results

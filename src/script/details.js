@@ -102,7 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       })
       .catch((error) => {
-        console.error('Error fetching movie backdrops:', error)
+        throw new Error('Error fetching movie backdrops:', error)
       })
   }
 
@@ -144,7 +144,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       })
       .catch((error) => {
-        console.error('Error fetching credits:', error)
+        throw new Error('Error fetching credits:', error)
       })
   }
 
@@ -172,7 +172,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       })
       .catch((error) => {
-        console.error('Error fetching similar movies:', error)
+        throw new Error('Error fetching similar movies:', error)
     })
   }
 })
