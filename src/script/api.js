@@ -63,7 +63,7 @@ fetch(
 
 const POPULAR_MOVIES_URL = `${BASE_URL}/movie/popular?api_key=${API_KEY}&language=en-US&page=1`
 
-async function fetchPopularMovies() {
+async function fetchPopularMovies () {
   try {
     const response = await fetch(POPULAR_MOVIES_URL)
     if (!response.ok) {
@@ -78,7 +78,7 @@ async function fetchPopularMovies() {
   }
 }
 
-function populatePopularMovies(movies) {
+function populatePopularMovies (movies) {
   const popularWrapper = document.querySelector('.new-popular-item')
   popularWrapper.innerHTML = '' // Clear existing content
 
@@ -111,11 +111,11 @@ function populatePopularMovies(movies) {
   addNavigation(popularWrapper)
 }
 
-function addNavigation(wrapper) {
+function addNavigation (wrapper) {
   const items = wrapper.querySelectorAll('.new-popular-item')
   let currentIndex = 0
 
-  function showItem(index) {
+  function showItem (index) {
     items.forEach((item, i) => {
       item.style.display = i === index ? 'block' : 'none'
     })
@@ -137,10 +137,10 @@ function addNavigation(wrapper) {
 
 // Fetch and populate popular movies
 fetchPopularMovies()
-async function fetchSuggestionDiv(query) {
+async function fetchSuggestionDiv (query) {
   try {
     const response = await fetch(
-      `${Base_url}/search/movie?api_key=${Api_key}&query=${query}`
+      `${Base_url}/search/movie?api_key=${API_KEY}&query=${query}`
     ) // Fixed typo: ap_key -> api_key
 
     if (!response.ok) {
@@ -148,7 +148,7 @@ async function fetchSuggestionDiv(query) {
     }
 
     const data = await response.json()
-    displaySearchInput(data.results)
+    // displaySearchInput(data.results)
   } catch (error) {
     throw new Error('Error fetching search results:', error)
   }

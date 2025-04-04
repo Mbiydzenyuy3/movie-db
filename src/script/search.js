@@ -3,7 +3,7 @@ const BASE_URL = import.meta.env.VITE_BASE_URL
 // const IMG_PATH = import.meta.env.VITE_IMG_PATH
 
 // Function to setup search bar functionality
-function setupSearchBar() {
+function SearchBar () {
   const openButton = document.getElementById('open')
   const closeButton = document.getElementById('close')
   const searchBar = document.querySelector('#search-bar')
@@ -35,7 +35,7 @@ function setupSearchBar() {
     }
   })
 
-  async function fetchSuggestionDiv(query) {
+  async function fetchSuggestionDiv (query) {
     try {
       const response = await fetch(
         `${BASE_URL}/search/movie?api_key=${API_KEY}&query=${query}`
@@ -48,7 +48,7 @@ function setupSearchBar() {
     }
   }
 
-  function displaySearchInput(results) {
+  function displaySearchInput (results) {
     suggestionsDiv.innerHTML = ''
     suggestionsDiv.style.display = 'block'
     results.forEach((movie) => {

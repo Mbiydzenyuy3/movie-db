@@ -8,6 +8,8 @@ const options = {
   }
 }
 
+let Swiper;
+
 fetch('https://api.themoviedb.org/3/trending/movie/day?language=en-US', options)
   .then((res) => res.json())
   .then((data) => {
@@ -124,7 +126,7 @@ fetch('https://api.themoviedb.org/3/trending/movie/day?language=en-US', options)
       navigation: {
         nextEl: ".swiper-button-next",
         prevEl: ".swiper-button-prev",
-      },
-    });
+      }
+    })
   })
   .catch((err) => console.error(err))
