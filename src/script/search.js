@@ -25,7 +25,7 @@ function setupSearchBar() {
     openButton.style.display = 'block'
   })
 
-  searchInput.addEventListener('keyup', async () => {
+  searchInput.addEventListener('Enter', async () => {
     const query = searchInput.value.trim().toLowerCase()
     if (query.length > 0) {
       const searchResults = await fetchSuggestionDiv(query)
