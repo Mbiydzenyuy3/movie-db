@@ -59,7 +59,9 @@ fetch(
       }
     })
   })
-  .catch((err) => {throw new Error(err)})
+  .catch((err) => {
+    throw new Error(err)
+  })
 
 const POPULAR_MOVIES_URL = `${BASE_URL}/movie/popular?api_key=${API_KEY}&language=en-US&page=1`
 
@@ -74,7 +76,7 @@ async function fetchPopularMovies () {
     const movies = data.results || []
     populatePopularMovies(movies)
   } catch (error) {
-   throw new Error('Error fetching popular movies:', error)
+     throw new Error('Error fetching popular movies:', error)
   }
 }
 

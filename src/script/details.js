@@ -1,3 +1,5 @@
+import '../styles/style.css'
+
 document.addEventListener('DOMContentLoaded', () => {
   const apiKey = '4ef363f9f9a3c5535149c90970fa2311'
   const urlParams = new URLSearchParams(window.location.search)
@@ -27,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
         : '/assets/img/placeholder-poster.jpg'
 
       // Set the movie poster for now
-      document.querySelector('#details-page').innerHTML = `
+      document.querySelector("#details-page").innerHTML = `
          <header>
     <div class='header'>
       <a href = "./index.html" class='logo'>
@@ -65,14 +67,14 @@ document.addEventListener('DOMContentLoaded', () => {
             <h2 class='heading'>Cast</h2>
             <div id='movieCast'></div>
           </div>
-        </section>
+        </section> 
+        <h2 class='heading'>Similar Movies</h2>
         <section id='similar-movies-section'>
-          <div class='container'>
-            <h2 class='heading'>Similar Movies</h2>
-            <div id='similarMoviesContainer'></div>
+          <div class='container mySwiper'>
+            <div id='similar-movies-container' class='swiper-wrapper'></div>
           </div>
         </section>
-      `
+      `;
 
       // Fetch the backdrops and replace the movie poster if a backdrop exists
       loadBackdrop(movieId)
@@ -153,7 +155,7 @@ document.addEventListener('DOMContentLoaded', () => {
     fetch(similarMoviesUrl)
       .then((response) => response.json())
       .then((data) => {
-        const container = document.getElementById('similarMoviesContainer')
+        const container = document.getElementById('similar-movies-container')
         container.innerHTML = '' // Clear existing movies
         if (data.results.length > 0) {
           data.results.forEach((movie) => {
@@ -161,9 +163,10 @@ document.addEventListener('DOMContentLoaded', () => {
               ? `https://image.tmdb.org/t/p/w200${movie.poster_path}`
               : '/assets/img/placeholder-poster.jpg'
             container.innerHTML += `
-              <div class='similar-movie'>
+              <div class='similar-movie swiper-slide'>
                 <img src='${moviePoster}' alt='${movie.title}' />
-                <p>${movie.title}</p>
+                <h3>${movie.title}</h3>
+                <p> ${`&#11088 ${movie.vote_average} | Action - Movies `}</p>
               </div>
             `
           })

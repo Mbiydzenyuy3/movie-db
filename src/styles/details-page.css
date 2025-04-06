@@ -49,6 +49,19 @@ img#moviePoster {
 	gap: 1rem;
 }
 
+#similar-movies-container {
+	display: grid;
+	grid-template-columns: repeat(20, 250px);
+	overflow: scroll;
+	margin: 16px;
+	gap: 16px;
+
+	& img {
+		width: 100%;
+		border-radius: 8px;
+	}
+}
+
 .cast-card {
 	display: inline-flex;
 	align-items: center;
@@ -80,7 +93,6 @@ img#moviePoster {
 }
 
 #similar-movies-section {
-	padding-block: 4rem;
 
 	& h2 {
 		margin-bottom: 1rem;
