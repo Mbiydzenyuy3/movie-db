@@ -142,7 +142,7 @@ fetchPopularMovies()
 async function fetchSuggestionDiv (query) {
   try {
     const response = await fetch(
-      `${Base_url}/search/movie?api_key=${API_KEY}&query=${query}`
+      `${BASE_URL}/search/movie?api_key=${API_KEY}&query=${query}`
     ) // Fixed typo: ap_key -> api_key
 
     if (!response.ok) {
