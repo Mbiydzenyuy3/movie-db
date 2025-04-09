@@ -5,6 +5,7 @@
 const API_KEY = import.meta.env.VITE_BASE_API_KEY
 const BASE_URL = import.meta.env.VITE_BASE_URL
 const IMG_PATH = import.meta.env.VITE_IMG_PATH
+const SEARCH_API = `https://api.themoviedb.org/3/search/movie?api_key${API_KEY}&query="`
 
 const options = {
   method: 'GET',
@@ -110,48 +111,31 @@ function populatePopularMovies (movies) {
     popularWrapper.appendChild(movieItem)
   })
 
-  addNavigation(popularWrapper)
+  // addNavigation(popularWrapper)
 }
 
-function addNavigation (wrapper) {
-  const items = wrapper.querySelectorAll('.new-popular-item')
-  let currentIndex = 0
 
-  function showItem (index) {
-    items.forEach((item, i) => {
-      item.style.display = i === index ? 'block' : 'none'
-    })
-  }
 
-  wrapper.querySelector('.prev').addEventListener('click', () => {
-    currentIndex = (currentIndex - 1 + items.length) % items.length
-    showItem(currentIndex)
-  })
+// const form = document.getElementById("search-form");
 
-  wrapper.querySelector('.next').addEventListener('click', () => {
-    currentIndex = (currentIndex + 1) % items.length
-    showItem(currentIndex)
-  })
+// getMovies(BASE_URL);
 
-  // Initialize the first item
-  showItem(currentIndex)
-}
+// export async function getMovies(url) {
+//   const response = await fetch(url);
+//   const data = await response.json();
 
-// Fetch and populate popular movies
-fetchPopularMovies()
-async function fetchSuggestionDiv (query) {
-  try {
-    const response = await fetch(
-      `${BASE_URL}/search/movie?api_key=${API_KEY}&query=${query}`
-    ) // Fixed typo: ap_key -> api_key
+//   showMovies(data.results);
+// }
 
-    if (!response.ok) {
-      throw new Error(`Failed to fetch search results: ${response.status}`)
-    }
+// form.addEventListener("submit", (e) => {
+//   e.preventDefault();
 
-    const data = await response.json()
-    // displaySearchInput(data.results)
-  } catch (error) {
-    throw new Error('Error fetching search results:', error)
-  }
-}
+//   const searchTerm = search.value;
+//   if (searchTerm && searchTerm !== "") {
+//     getMovies(SEARCH_API + searchTerm);
+
+//     search.value = "";
+//   } else {
+//     window.location.reload();
+//   }
+// });

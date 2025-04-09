@@ -1,9 +1,12 @@
 import '../styles/style.css'
 
+const API_KEY = import.meta.env.VITE_BASE_API_KEY
+const BASE_URL = import.meta.env.VITE_BASE_URL
+
 document.addEventListener('DOMContentLoaded', () => {
-  const apiKey = '4ef363f9f9a3c5535149c90970fa2311'
-  const urlParams = new URLSearchParams(window.location.search)
-  const movieId = urlParams.get('movie_id')
+  // const apiKey = '4ef363f9f9a3c5535149c90970fa2311'
+  // const urlParams = new URLSearchParams(window.location.search)
+  // const movieId = urlParams.get('movie_id')
 
   if (!movieId) {
     document.querySelector('#details-page').innerHTML =
@@ -12,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Fetch the movie details
-  const apiUrl = `https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}&language=en-US`
+  const apiUrl = `https://api.themoviedb.org/3/movie/${movieId}?api_key=${AbortController}&language=en-US`
 
   fetch(apiUrl)
     .then((response) => response.json())
@@ -29,16 +32,16 @@ document.addEventListener('DOMContentLoaded', () => {
         : '/assets/img/placeholder-poster.jpg'
 
       // Set the movie poster for now
-      document.querySelector("#details-page").innerHTML = `
+      document.querySelector('#details-page').innerHTML = `
          <header>
     <div class='header'>
-      <a href = "./index.html" class='logo'>
+      <a href = './index.html' class='logo'>
         <img class='main-logo' src='/assets/img/Logo.png' alt='logo' />
         <img class='logo-name' src='/assets/img/SaintStream.png' alt='logo' />
       </a>
       <nav class='navbar'>
         <ul>
-          <li><a href='./home.html'>Home</a></li>
+          <li><a href='./index.html'>Home</a></li>
           <li><a href='./details.html'>About</a></li>
           <li><a href='./details.html'>Favorites</a></li>
         </ul>
@@ -74,7 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <div id='similar-movies-container' class='swiper-wrapper'></div>
           </div>
         </section>
-      `;
+      `
 
       // Fetch the backdrops and replace the movie poster if a backdrop exists
       loadBackdrop(movieId)
@@ -91,7 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Fetch the movie backdrops
   function loadBackdrop (movieId) {
-    const backdropUrl = `https://api.themoviedb.org/3/movie/${movieId}/images?api_key=${apiKey}`
+    const backdropUrl = `https://api.themoviedb.org/3/movie/${movieId}/images?api_key=${API_KEY}`
 
     fetch(backdropUrl)
       .then((response) => response.json())
@@ -110,7 +113,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Fetch movie credits with cast pictures
   function loadMovieCredits (movieId) {
-    const creditsUrl = `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${apiKey}`
+    const creditsUrl = `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${API_KEY}`
     fetch(creditsUrl)
       .then((response) => response.json())
       .then((data) => {
@@ -151,7 +154,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function loadSimilarMovies (movieId) {
-    const similarMoviesUrl = `https://api.themoviedb.org/3/movie/${movieId}/similar?api_key=${apiKey}&language=en-US&page=1`
+    const similarMoviesUrl = `https://api.themoviedb.org/3/movie/${movieId}/similar?api_key=${API_KEY}&language=en-US&page=1`
     fetch(similarMoviesUrl)
       .then((response) => response.json())
       .then((data) => {
@@ -177,5 +180,29 @@ document.addEventListener('DOMContentLoaded', () => {
       .catch((error) => {
         throw new Error('Error fetching similar movies:', error)
     })
+  }
+})
+
+const form = document.getElementById('search-form')
+
+getMovies(BASE_URL)
+
+export async function getMovies(url) {
+  const response = await fetch(url)
+  const data = await response.json()
+
+  showMovies(data.results)
+}
+
+form.addEventListener('submit', (e) => {
+  e.preventDefault()
+
+  const searchTerm = search.value
+  if (searchTerm && searchTerm !== '') {
+    getMovies(SEARCH_API + searchTerm)
+
+    search.value = ''
+  } else {
+    window.location.reload()
   }
 })
