@@ -4,7 +4,7 @@ const API_KEY = import.meta.env.VITE_BASE_API_KEY
 const BASE_URL = import.meta.env.VITE_BASE_URL
 
 document.addEventListener('DOMContentLoaded', () => {
-  // const apiKey = '4ef363f9f9a3c5535149c90970fa2311'
+  // const API_KEY = '4ef363f9f9a3c5535149c90970fa2311'
   // const urlParams = new URLSearchParams(window.location.search)
   // const movieId = urlParams.get('movie_id')
 
@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Fetch the movie details
-  const apiUrl = `https://api.themoviedb.org/3/movie/${movieId}?api_key=${AbortController}&language=en-US`
+  const apiUrl = `https://api.themoviedb.org/3/movie/${movieId}?api_key=${API_KEY}&language=en-US`
 
   fetch(apiUrl)
     .then((response) => response.json())

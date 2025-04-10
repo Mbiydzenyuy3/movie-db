@@ -111,7 +111,7 @@ function populatePopularMovies (movies) {
     popularWrapper.appendChild(movieItem)
   })
 
-  // addNavigation(popularWrapper)
+  addNavigation(popularWrapper)
 }
 
 
