@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
   <h3 class='heading'>Popular of the week</h3>
   <section class='popular-release mySwiper swiper' id='popular-release'>
     <div class='container swiper-wrapper' id='popular-swiper'>
-      <!-- slides inserted here by fetchPopularMovies -->
+      
     </div>
     <div class='swiper-button-next'></div>
     <div class='swiper-button-prev'></div>

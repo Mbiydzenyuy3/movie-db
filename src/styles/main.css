@@ -66,7 +66,7 @@
     text-align: left;
   }
 
-  .release_date {
+  .release-date {
     font-size: 3rem;
     color: var(--title-color);
     letter-spacing: -2px;
@@ -75,7 +75,7 @@
     text-align: left;
   }
 
-  .movie_gens {
+  .movie-gens {
     color: var(--body-text);
     text-align: left;
   }
@@ -147,6 +147,12 @@
   height: 80vh;
 }
 
+.slide img {
+  width: 100%;
+  display: block;
+  border-radius: 10px;
+}
+
 #movie-details img {
   max-width: 100%;
   height: 100%;
@@ -196,6 +202,11 @@
   box-shadow: 0 2px 5px #001a;
 }
 
+h2 {
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+}
+
 #favorites h2 {
   margin-bottom: 1rem;
 }
@@ -208,15 +219,6 @@
   border-radius: 5px;
   cursor: pointer;
 }
-
-/* Section headings */
-
-h2 {
-  margin-bottom: 20px;
-  padding-bottom: 10px;
-}
-
-/* Cast and similar movies sections */
 
 #movie-cast,
 #similar-movies {
@@ -279,12 +281,6 @@ h2 {
 .slide {
   min-width: 20%;
   box-sizing: border-box;
-}
-
-.slide img {
-  width: 100%;
-  display: block;
-  border-radius: 10px;
 }
 
 nav ul {
