@@ -254,7 +254,7 @@ document.addEventListener('DOMContentLoaded', () => {
   Promise.all([
     fetchMovieDetails(movieId),
     fetchMovieCredits(movieId),
-    fetchMovieImages(movieId),
+    fetchMovieImages(movieId)
   ])
     .then(([movie, credits, images]) => {
       if (!movie || movie.status_code === 34) {

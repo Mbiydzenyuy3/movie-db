@@ -3,8 +3,8 @@ const options = {
   headers: {
     accept: 'application/json',
     Authorization:
-      'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0ZWYzNjNmOWY5YTNjNTUzNTE0OWM5MDk3MGZhMjMxMSIsIm5iZiI6MTczMzUxMDAxOS40MTYsInN1YiI6IjY3NTM0MzgzODcxYTQyYzljMjQ1NDFhNSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.FgU6EplfTnUB-e6GZZfUI7lO0Ad71oYwG54qzjXpozo',
-  },
+      'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0ZWYzNjNmOWY5YTNjNTUzNTE0OWM5MDk3MGZhMjMxMSIsIm5iZiI6MTczMzUxMDAxOS40MTYsInN1YiI6IjY3NTM0MzgzODcxYTQyYzljMjQ1NDFhNSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.FgU6EplfTnUB-e6GZZfUI7lO0Ad71oYwG54qzjXpozo'
+  }
 }
 
 const HERO_IMG_BASE = 'https://image.tmdb.org/t/p/original'
@@ -147,15 +147,15 @@ function initHeroSwiper() {
     speed: 800,
     autoplay: {
       delay: 6000,
-      disableOnInteraction: false,
+      disableOnInteraction: false
     },
     pagination: {
       el: '.swiper-pagination',
-      clickable: true,
+      clickable: true
     },
     a11y: {
-      enabled: true,
-    },
+      enabled: true
+    }
   })
 }
 

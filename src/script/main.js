@@ -110,13 +110,13 @@ document.addEventListener('DOMContentLoaded', () => {
           loop: true,
           navigation: {
             nextEl: '#popular-release .swiper-button-next',
-            prevEl: '#popular-release .swiper-button-prev',
+            prevEl: '#popular-release .swiper-button-prev'
           },
           breakpoints: {
             640: { slidesPerView: 1.2 },
             768: { slidesPerView: 2 },
-            1024: { slidesPerView: 3 },
-          },
+            1024: { slidesPerView: 3 }
+          }
         })
       })
     } catch (e) {
@@ -135,8 +135,8 @@ const options = {
   headers: {
     accept: 'application/json',
     Authorization:
-      'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwYmEwM2JhZjAwODc4YTBhNmE4MDYwN2U1ZGI5NzFmMCIsIm5iZiI6MTczMzc4Mzc4MC4yNTUsInN1YiI6IjY3NTc3MGU0MGFiN2U4MDc3Y2ZiZjFlYyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.XXDs4eNLPoVC8cYP4I4R_ZT48CSvQPpCMqUGOWCPlVk',
-  },
+      'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwYmEwM2JhZjAwODc4YTBhNmE4MDYwN2U1ZGI5NzFmMCIsIm5iZiI6MTczMzc4Mzc4MC4yNTUsInN1YiI6IjY3NTc3MGU0MGFiN2U4MDc3Y2ZiZjFlYyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.XXDs4eNLPoVC8cYP4I4R_ZT48CSvQPpCMqUGOWCPlVk'
+  }
 }
 
 // Just release (discover/tv) fetch + init its swiper after DOM insert
@@ -185,15 +185,15 @@ fetch(
     new Swiper('#just-release', {
       navigation: {
         nextEl: '#just-release .swiper-button-next',
-        prevEl: '#just-release .swiper-button-prev',
+        prevEl: '#just-release .swiper-button-prev'
       },
       slidesPerView: 1,
       spaceBetween: 12,
       breakpoints: {
         640: { slidesPerView: 1.2 },
         768: { slidesPerView: 2 },
-        1024: { slidesPerView: 3 },
-      },
+        1024: { slidesPerView: 3 }
+      }
     })
   })
   .catch((err) => {
@@ -241,15 +241,15 @@ fetch(`${BASE_URL}/movie/top_rated?language=en-US&page=1`, options)
     new Swiper('#likes', {
       navigation: {
         nextEl: '#likes .swiper-button-next',
-        prevEl: '#likes .swiper-button-prev',
+        prevEl: '#likes .swiper-button-prev'
       },
       slidesPerView: 1,
       spaceBetween: 12,
       breakpoints: {
         640: { slidesPerView: 1.5 },
         768: { slidesPerView: 2 },
-        1024: { slidesPerView: 4 },
-      },
+        1024: { slidesPerView: 4 }
+      }
     })
   })
   .catch((err) => {
