@@ -1,21 +1,21 @@
 const options = {
-  method: "GET",
+  method: 'GET',
   headers: {
-    accept: "application/json",
+    accept: 'application/json',
     Authorization:
-      "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0ZWYzNjNmOWY5YTNjNTUzNTE0OWM5MDk3MGZhMjMxMSIsIm5iZiI6MTczMzUxMDAxOS40MTYsInN1YiI6IjY3NTM0MzgzODcxYTQyYzljMjQ1NDFhNSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.FgU6EplfTnUB-e6GZZfUI7lO0Ad71oYwG54qzjXpozo"
+      'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0ZWYzNjNmOWY5YTNjNTUzNTE0OWM5MDk3MGZhMjMxMSIsIm5iZiI6MTczMzUxMDAxOS40MTYsInN1YiI6IjY3NTM0MzgzODcxYTQyYzljMjQ1NDFhNSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.FgU6EplfTnUB-e6GZZfUI7lO0Ad71oYwG54qzjXpozo'
   }
 }
 
-const HERO_IMG_BASE = "https://image.tmdb.org/t/p/original"
+const HERO_IMG_BASE = 'https://image.tmdb.org/t/p/original'
 const TRENDING_URL =
-  "https://api.themoviedb.org/3/trending/movie/day?language=en-US"
+  'https://api.themoviedb.org/3/trending/movie/day?language=en-US'
 const MAX_HERO_SLIDES = 6
 
 // Helper to preload an image and resolve when loaded (or reject)
 function preloadImage(url) {
   return new Promise((resolve, reject) => {
-    if (!url) return reject(new Error("No url"))
+    if (!url) return reject(new Error('No url'))
     const img = new Image()
     img.src = url
     img.onload = () => resolve(url)
@@ -31,7 +31,7 @@ async function buildHeroSlides() {
     const results = Array.isArray(data.results) ? data.results : []
     if (results.length === 0) return
 
-    const heroSection = document.querySelector(".hero")
+    const heroSection = document.querySelector('.hero')
     if (!heroSection) return
 
     // Use fragment for better performance
@@ -44,29 +44,29 @@ async function buildHeroSlides() {
       const imagePath = movie.backdrop_path || movie.poster_path || null
       const bgUrl = imagePath
         ? `${HERO_IMG_BASE}${imagePath}`
-        : "/assets/img/placeholder-hero.jpg"
+        : '/assets/img/placeholder-hero.jpg'
 
       // create slide element with classes only (styling in CSS)
-      const slide = document.createElement("div")
-      slide.classList.add("hero-movies-bg", "swiper-slide")
+      const slide = document.createElement('div')
+      slide.classList.add('hero-movies-bg', 'swiper-slide')
 
       // keep slide content concealed until image loads
-      slide.setAttribute("aria-hidden", "true")
-      slide.dataset.movieId = movie.id ?? ""
+      slide.setAttribute('aria-hidden', 'true')
+      slide.dataset.movieId = movie.id ?? ''
 
       // content container (text/buttons)
-      const content = document.createElement("div")
-      content.classList.add("hero-content")
+      const content = document.createElement('div')
+      content.classList.add('hero-content')
       content.innerHTML = `
         <h2 class="hero-movie-title">${escapeHtml(
-          movie.title || movie.name || ""
+          movie.title || movie.name || ''
         )}</h2>
         <p class="hero-movie-paragraph">${escapeHtml(
-          (movie.overview || "").slice(0, 160).trim() || ""
-        )}${movie.overview ? "..." : ""}</p>
+          (movie.overview || '').slice(0, 160).trim() || ''
+        )}${movie.overview ? '...' : ''}</p>
         
          <div class='buttons'>
-           <a href="details.html?movie_id=${movie.id || ""}">
+           <a href="details.html?movie_id=${movie.id || ''}">
               <button class='primary-cta'>
                 <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'
                 fill='rgba(255,255,255,1)'>
@@ -77,9 +77,9 @@ async function buildHeroSlides() {
                 <span>Watch trailer</span>
               </button>
             </a>
-            <a href="details.html?movie_id=${movie.id || ""}">
+            <a href="details.html?movie_id=${movie.id || ''}">
               <button class='outline-cta' type='button' data-watchlist='${
-                movie.id || ""
+                movie.id || ''
               }'>
                 <i class='ri-bookmark-line'></i>
                 <span>Add watchlist</span>
@@ -97,13 +97,13 @@ async function buildHeroSlides() {
       preloadImage(bgUrl)
         .then(() => {
           slide.style.backgroundImage = `url("${bgUrl}")`
-          slide.classList.add("hero-bg-loaded")
-          slide.removeAttribute("aria-hidden")
+          slide.classList.add('hero-bg-loaded')
+          slide.removeAttribute('aria-hidden')
         })
         .catch(() => {
           // fallback: add a class so CSS can display placeholder
-          slide.classList.add("hero-bg-failed")
-          slide.removeAttribute("aria-hidden")
+          slide.classList.add('hero-bg-failed')
+          slide.removeAttribute('aria-hidden')
         })
     }
 
@@ -115,22 +115,22 @@ async function buildHeroSlides() {
   } catch (err) {
     // graceful error handling
     // eslint-disable-next-line no-console
-    console.error("Error building hero slides:", err)
+    console.error('Error building hero slides:', err)
   }
 }
 
 // Initialize Swiper with autoplay 6000ms
 function initHeroSwiper() {
-  if (typeof Swiper === "undefined") {
+  if (typeof Swiper === 'undefined') {
     // Swiper not available globally — log and exit
     // eslint-disable-next-line no-console
-    console.warn("Swiper is not available. Make sure swiper JS is loaded.")
+    console.warn('Swiper is not available. Make sure swiper JS is loaded.')
     return
   }
 
   // destroy existing instance on this selector to avoid duplicate in dev HMR
   // (assumes previous instance stored on element)
-  const containerEl = document.querySelector("#swiper-item")
+  const containerEl = document.querySelector('#swiper-item')
   if (!containerEl) return
   if (containerEl.swiper) {
     try {
@@ -140,17 +140,17 @@ function initHeroSwiper() {
     }
   }
 
-  new Swiper("#swiper-item", {
+  new Swiper('#swiper-item', {
     loop: true,
     slidesPerView: 1,
-    effect: "fade",
+    effect: 'fade',
     speed: 800,
     autoplay: {
       delay: 6000,
       disableOnInteraction: false
     },
     pagination: {
-      el: ".swiper-pagination",
+      el: '.swiper-pagination',
       clickable: true
     },
     a11y: {
@@ -162,11 +162,11 @@ function initHeroSwiper() {
 // tiny utility to escape text inserted into innerHTML
 function escapeHtml(str) {
   return String(str)
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#39;")
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;')
 }
 
 buildHeroSlides()

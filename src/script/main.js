@@ -3,7 +3,6 @@ import '../styles/style.css'
 import '../script/carousel.js'
 import { fetchPopularMovies } from '../script/api.js'
 import '../script/counter.js'
-import '../script/search.js'
 
 document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('app').innerHTML = `
@@ -104,7 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // initialize after DOM painted so Swiper can read slides
       requestAnimationFrame(() => {
         // initialize Swiper on the popular section (container with class 'swiper')
-        new Swiper('#popular-release', {
+        const popularSwiper = new Swiper('#popular-release', {
           slidesPerView: 1,
           spaceBetween: 12,
           loop: true,
@@ -118,6 +117,7 @@ document.addEventListener('DOMContentLoaded', () => {
             1024: { slidesPerView: 3 }
           }
         })
+        void popularSwiper
       })
     } catch (e) {
       console.warn('fetchPopularMovies error', e)
@@ -182,7 +182,7 @@ fetch(
   })
   .then(() => {
     // init swiper for just-release
-    new Swiper('#just-release', {
+    const justReleaseSwiper = new Swiper('#just-release', {
       navigation: {
         nextEl: '#just-release .swiper-button-next',
         prevEl: '#just-release .swiper-button-prev'
@@ -195,6 +195,7 @@ fetch(
         1024: { slidesPerView: 3 }
       }
     })
+    void justReleaseSwiper
   })
   .catch((err) => {
     console.error(err)
@@ -238,7 +239,7 @@ fetch(`${BASE_URL}/movie/top_rated?language=en-US&page=1`, options)
     movieList.appendChild(frag)
   })
   .then(() => {
-    new Swiper('#likes', {
+    const likesSwiper = new Swiper('#likes', {
       navigation: {
         nextEl: '#likes .swiper-button-next',
         prevEl: '#likes .swiper-button-prev'
@@ -251,6 +252,7 @@ fetch(`${BASE_URL}/movie/top_rated?language=en-US&page=1`, options)
         1024: { slidesPerView: 4 }
       }
     })
+    void likesSwiper
   })
   .catch((err) => {
     console.error(err)
