@@ -1,9 +1,9 @@
-import '../styles/main.css'
-import '../styles/style.css'
-import '../script/carousel.js'
-import '../script/api.js'
-import '../script/counter.js'
-import '../script/search.js'
+import '../styles/main.css';
+import '../styles/style.css';
+import '../script/carousel.js';
+import { fetchPopularMovies } from '../script/api.js';
+import '../script/counter.js';
+import '../script/search.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('app').innerHTML = `
@@ -33,126 +33,103 @@ document.addEventListener('DOMContentLoaded', () => {
             <div id='search-bar'>
               <form id='search-form'>
                 <input type='search' id ='search-input' placeholder='search by title...' />
-                
               </form>
             </div>
           </div>
   </header>
-	<section class='mySwiper' id='swiper-item'>
-	  <div id='slider' class='swiper-wrapper hero container'>			
-		</div>
-	</section>
+  <section class='mySwiper' id='swiper-item'>
+    <div id='slider' class='swiper-wrapper hero container'></div>
+    <div class="swiper-pagination"></div>
+  </section>
+
   <section id='brand-logos' class='mySwiper swiper'>
-        <div class='container swiper-wrapper carousel-slide'>
-          <div class='swiper-slide' id='slide-img-wrap'>
-            <img src='/assets/img/disney.png' alt='' class='logos' />
-          </div>
-          <div class='swiper-slide' id='slide-img-wrap-1'><img src='/assets/img/netflix.png' alt='' class='logos' />
-          </div>
-          <div class='swiper-slide' id='slide-img-wrap-2'><img src='/assets/img/hbo-max.png' alt='' class='logos' /></div>
-          <div class='swiper-slide' id='slide-img-wrap-3'><img src='/assets/img/pixar.png' alt='' class='logos' /></div>
-          <div class='swiper-slide' id='slide-img-wrap-4'><img src='/assets/img/marvel.png' alt='' class='logos' /></div>
-          <div class='swiper-slide' id='slide-img-wrap-5'><img src='/assets/img/starwars.png' alt='' class='logos' /></div>
-          <div class='swiper-slide' id='slide-img-wrap-6'><img src='/assets/img/national geographic.png' alt='' class='logos' /></div>
-          <div class='swiper-slide' id='slide-img-wrap-7'><img src='/assets/img/youTube.png' alt='' class='logos' /></div>
-          <div class='swiper-slide' id='slide-img-wrap-8'><img src='/assets/img/webseries.png' alt='' class='logos' /></div>
-        </div>
-        <div class='swiper-button-next' id='btn-next'></div>
-        <div class='swiper-button-prev' id='btn-prev'></div>
+    <div class='container swiper-wrapper carousel-slide'>
+      <div class='swiper-slide' id='slide-img-wrap'><img src='/assets/img/disney.png' alt='' class='logos' /></div>
+      <div class='swiper-slide' id='slide-img-wrap-1'><img src='/assets/img/netflix.png' alt='' class='logos' /></div>
+      <div class='swiper-slide' id='slide-img-wrap-2'><img src='/assets/img/hbo-max.png' alt='' class='logos' /></div>
+      <div class='swiper-slide' id='slide-img-wrap-3'><img src='/assets/img/pixar.png' alt='' class='logos' /></div>
+      <div class='swiper-slide' id='slide-img-wrap-4'><img src='/assets/img/marvel.png' alt='' class='logos' /></div>
+      <div class='swiper-slide' id='slide-img-wrap-5'><img src='/assets/img/starwars.png' alt='' class='logos' /></div>
+      <div class='swiper-slide' id='slide-img-wrap-6'><img src='/assets/img/national geographic.png' alt='' class='logos' /></div>
+      <div class='swiper-slide' id='slide-img-wrap-7'><img src='/assets/img/youTube.png' alt='' class='logos' /></div>
+      <div class='swiper-slide' id='slide-img-wrap-8'><img src='/assets/img/webseries.png' alt='' class='logos' /></div>
+    </div>
+    <div class='swiper-button-next' id='btn-next'></div>
+    <div class='swiper-button-prev' id='btn-prev'></div>
   </section>
-  <h3 class='heading'>Popular of the week</h3>   
-  <section class='popular-release mySwiper' id='popular-release'>
-      <div class='container swiper-wrapper' id='popular-swiper'>   
-          <div class='new-popular-item'>
-              <div class='number'>1</div>
-              <div class='image-popular-release'>
-                <img class='poster-img' src='/assets/img/badboys.jpg' alt='img'>
-              </div>
-              <div class='release-overwiew'>
-                <div class='pg-age'>PG-13</div>
-                <h4 class='new-release-title'>Bad Boys</h4>
-                <span class='movie-genre'>
-                  <p>SuperHero - Action</p>
-                </span>
-                <p class='movie-star'>⭐ 4.3 | <span>Movies</span></p>
-              </div>
-          </div>
-          <div class='swiper-button-next'></div>
-          <div class='swiper-button-prev'></div>
-      </div>
-  </section>
-  <div class='new-movie-section'>
-    <h3 class='heading'>Latest releases</h3>
-    <section id='just-release' class='mySwiper swiper'>
-      <div id='swiper-wrapper-1' class = 'container swiper-wrapper'>  
-      </div>
-      <div class='swiper-button-next'></div>
-      <div class='swiper-button-prev'></div>
-    </section>
-  </div>
-  <div class='watch-movie-section'>
-    <h3 class='heading'> Watchlist </h3>
-    <section id='watchlist' class='mySwiper swiper'>
-      <div id= 'swiper-wrapper-2' class = 'container swiper-wrapper'> 
-      </div>
-      <div class='swiper-button-next'></div>
-      <div class='swiper-button-prev'></div>
-    </section>
-  </div>
-  <div class='likes-section'>
-    <h3 class='heading'>Likes</h3>
-    <section id='likes' class='mySwiper swiper'>
-    <div id='swiper-wrapper-3' class ='container swiper-wrapper'> 
+
+  <h3 class='heading'>Popular of the week</h3>
+  <section class='popular-release mySwiper swiper' id='popular-release'>
+    <div class='container swiper-wrapper' id='popular-swiper'>
+      <!-- slides inserted here by fetchPopularMovies -->
     </div>
     <div class='swiper-button-next'></div>
     <div class='swiper-button-prev'></div>
+  </section>
+
+  <div class='new-movie-section'>
+    <h3 class='heading'>Latest releases</h3>
+    <section id='just-release' class='mySwiper swiper'>
+      <div id='swiper-wrapper-1' class='container swiper-wrapper'></div>
+      <div class='swiper-button-next'></div>
+      <div class='swiper-button-prev'></div>
     </section>
   </div>
-  <footer>
-    <div class ='container'>
-      <div class='footer'>
-      <div class='footer-item-one'>
-        <div class='footer-heading'>
-          <h3 class='heading-three-footer'>Our platform is trusted by millions and features best updated movies all around the world.
-          </h3>
-        </div>
-      </div>
-      <div class='footer-item-two'>
-        <ul class='unordered-list'>
-          <div class='links'><a href=''>Home</a>/</div>
-          <div class='links'><a href=''>Release</a>/</div>
-          <div class='links'><a href=''>Discover</a>/</div>
-        </ul>
-        <div class='social-media'>
-          <img class='social-media-icon' src='/assets/img/Facebook.png' alt='facebook-icon' />
-          <img class='social-media-icon' src='/assets/img/Instagram.png' alt='instagram-icon' />
-          <img class='social-media-icon' src='/assets/img/Twitter.png' alt='twitter-icon' />
-          <img class='social-media-icon' src='/assets/img/Google.png' alt='google-icon' />
-        </div>
-      </div>
-    </div>
-    <div class='contact-footer'>
-      <div class='contact-policy'>
-        <span>Privacy Policy</span>
-        <span>Terms of service</span>
-        <span>Language</span>
-      </div>
-      <div class='copyright'>
-        &copy 2024
-      </div>
-    </div>
-    </div>
-  </footer>
-`
-})
 
-// const API_KEY = import.meta.env.VITE_BASE_API_KEY
-const BASE_URL = import.meta.env.VITE_BASE_URL
-const IMG_PATH = import.meta.env.VITE_IMG_PATH
+  <div class='watch-movie-section'>
+    <h3 class='heading'> Watchlist </h3>
+    <section id='watchlist' class='mySwiper swiper'>
+      <div id='swiper-wrapper-2' class='container swiper-wrapper'></div>
+      <div class='swiper-button-next'></div>
+      <div class='swiper-button-prev'></div>
+    </section>
+  </div>
 
-// setupCounter(document.querySelector('#counter'))
+  <div class='likes-section'>
+    <h3 class='heading'>Likes</h3>
+    <section id='likes' class='mySwiper swiper'>
+      <div id='swiper-wrapper-3' class='container swiper-wrapper'></div>
+      <div class='swiper-button-next'></div>
+      <div class='swiper-button-prev'></div>
+    </section>
+  </div>
 
-// API for just release movie section
+  <footer> ... </footer>
+  `;
+
+  // Populate popular movies then init Swiper on the section (not the inner wrapper)
+  (async () => {
+    try {
+      await fetchPopularMovies(); // populates #popular-swiper
+      // initialize after DOM painted so Swiper can read slides
+      requestAnimationFrame(() => {
+        // initialize Swiper on the popular section (container with class 'swiper')
+        new Swiper('#popular-release', {
+          slidesPerView: 1,
+          spaceBetween: 12,
+          loop: true,
+          navigation: {
+            nextEl: '#popular-release .swiper-button-next',
+            prevEl: '#popular-release .swiper-button-prev',
+          },
+          breakpoints: {
+            640: { slidesPerView: 1.2 },
+            768: { slidesPerView: 2 },
+            1024: { slidesPerView: 3 },
+          },
+        });
+      });
+    } catch (e) {
+      console.warn('fetchPopularMovies error', e);
+    }
+  })();
+});
+
+// Shared API options and constants used elsewhere in this file
+const BASE_URL = import.meta.env.VITE_BASE_URL;
+const IMG_PATH =
+  import.meta.env.VITE_IMG_PATH || 'https://image.tmdb.org/t/p/w500';
+
 const options = {
   method: 'GET',
   headers: {
@@ -160,74 +137,142 @@ const options = {
     Authorization:
       'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwYmEwM2JhZjAwODc4YTBhNmE4MDYwN2U1ZGI5NzFmMCIsIm5iZiI6MTczMzc4Mzc4MC4yNTUsInN1YiI6IjY3NTc3MGU0MGFiN2U4MDc3Y2ZiZjFlYyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.XXDs4eNLPoVC8cYP4I4R_ZT48CSvQPpCMqUGOWCPlVk',
   },
-}
+};
 
+// Just release (discover/tv) fetch + init its swiper after DOM insert
 fetch(
   `${BASE_URL}/discover/tv?include_adult=false&include_null_first_air_dates=false&language=en-US&page=1&sort_by=popularity.desc`,
   options
 )
   .then((res) => res.json())
   .then((data) => {
-    const firstSection = document.getElementById('swiper-wrapper-1')
-    for (let index = 0; index < data.results.length; index++) {
-      const movie = data.results[index]
+    const firstSection = document.getElementById('swiper-wrapper-1');
+    if (!firstSection || !Array.isArray(data.results)) return;
+
+    const frag = document.createDocumentFragment();
+    data.results.forEach((movie) => {
       const posterPath = movie.poster_path
         ? `${IMG_PATH}${movie.poster_path}`
-        : 'https://via.placeholder.com/500x750?text=No+Image+Available'
+        : '/assets/img/placeholder-poster.jpg';
+      const slide = document.createElement('a');
+      slide.href = 'details.html?movie_id=' + movie.id;
+      slide.className = 'released-movies swiper-slide';
 
-      const slide = document.createElement('a')
-      slide.href = 'details.html?movie_id=' + movie.id
-      slide.className = 'released-movies swiper-slide'
-      firstSection.appendChild(slide)
+      const img = document.createElement('img');
+      img.src = posterPath;
+      img.alt = movie.name || movie.title || '';
+      img.className = 'movie-poster';
+      slide.appendChild(img);
 
-      const img = document.createElement('img')
-      img.src = posterPath
-      img.alt = movie.title
-      img.className = 'movie-poster'
-      slide.appendChild(img)
+      const movieTitle = document.createElement('h4');
+      movieTitle.className = 'movie-title';
+      movieTitle.textContent =
+        movie.name || movie.original_name || movie.title || '';
+      slide.appendChild(movieTitle);
 
-      const movieTitle = document.createElement('h4')
-      movieTitle.className = 'movie-title'
-      movieTitle.textContent = movie.title
-      movieTitle.innerHTML = `${movie.original_name}`
-      slide.appendChild(movieTitle)
+      const movieParagraph = document.createElement('p');
+      movieParagraph.className = 'movie-paragraph';
+      movieParagraph.innerHTML = `&#11088 ${movie.vote_average} | Action - Movies `;
+      slide.appendChild(movieParagraph);
 
-      const movieParagraph = document.createElement('p')
-      movieParagraph.className = 'movie-paragraph'
-      movieParagraph.textContent = movie.paragraph
-      movieParagraph.innerHTML = `&#11088 ${movie.vote_average} | Action - Movies `
-      slide.appendChild(movieParagraph)
-    }
+      frag.appendChild(slide);
+    });
+
+    firstSection.appendChild(frag);
   })
   .then(() => {
-    const swiper = new Swiper('#just-release', {
+    // init swiper for just-release
+    new Swiper('#just-release', {
       navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
+        nextEl: '#just-release .swiper-button-next',
+        prevEl: '#just-release .swiper-button-prev',
       },
-    })
+      slidesPerView: 1,
+      spaceBetween: 12,
+      breakpoints: {
+        640: { slidesPerView: 1.2 },
+        768: { slidesPerView: 2 },
+        1024: { slidesPerView: 3 },
+      },
+    });
   })
-  .catch((err) => {throw new Error(err)})
+  .catch((err) => {
+    console.error(err);
+  });
 
-document.addEventListener('DOMContentLoaded', function () {
-  const openButton = document.getElementById('open')
-  const closeButton = document.getElementById('close')
-  const searchBar = document.querySelector('.search-bar')
+// top-rated -> likes section
+fetch(`${BASE_URL}/movie/top_rated?language=en-US&page=1`, options)
+  .then((res) => res.json())
+  .then((data) => {
+    const movieList = document.getElementById('swiper-wrapper-3');
+    if (!movieList || !Array.isArray(data.results)) return;
 
-  // Show the search bar
-  openButton.addEventListener('click', function () {
-    searchBar.style.display = 'block' // Show the search bar
-    openButton.style.display = 'none' // Hide the open button
-    closeButton.style.display = 'block' // Show the close button
-    document.getElementById('search-input').focus().value = '' // Focus on input field
+    const frag = document.createDocumentFragment();
+    data.results.forEach((movie) => {
+      const posterPath = movie.poster_path
+        ? `${IMG_PATH}${movie.poster_path}`
+        : '/assets/img/placeholder-poster.jpg';
+      const slide = document.createElement('a');
+      slide.href = 'details.html?movie_id=' + movie.id;
+      slide.className = 'released-movies swiper-slide';
+
+      const img = document.createElement('img');
+      img.src = posterPath;
+      img.alt = movie.title || movie.name || '';
+      img.className = 'movie-poster-one';
+      slide.appendChild(img);
+
+      const movieTitle = document.createElement('h4');
+      movieTitle.className = 'movie-title';
+      movieTitle.textContent = movie.title || movie.name || '';
+      slide.appendChild(movieTitle);
+
+      const movieParagraph = document.createElement('p');
+      movieParagraph.className = 'movie-paragraph';
+      movieParagraph.innerHTML = `&#11088 ${movie.vote_average} | Mystery - Movies `;
+      slide.appendChild(movieParagraph);
+
+      frag.appendChild(slide);
+    });
+
+    movieList.appendChild(frag);
   })
-
-  // Hide the search bar
-  closeButton.addEventListener('click', function () {
-    searchBar.style.display = 'none' // Hide the search bar
-    closeButton.style.display = 'none' // Hide the close button
-    openButton.style.display = 'block' // Show the open button again
+  .then(() => {
+    new Swiper('#likes', {
+      navigation: {
+        nextEl: '#likes .swiper-button-next',
+        prevEl: '#likes .swiper-button-prev',
+      },
+      slidesPerView: 1,
+      spaceBetween: 12,
+      breakpoints: {
+        640: { slidesPerView: 1.5 },
+        768: { slidesPerView: 2 },
+        1024: { slidesPerView: 4 },
+      },
+    });
   })
-})
+  .catch((err) => {
+    console.error(err);
+  });
 
-const searchInput = document.getElementById('search-input')
+// basic search bar open/close UX (keeps behavior consistent)
+document.addEventListener('click', (e) => {
+  const openButton = document.getElementById('open');
+  const closeButton = document.getElementById('close');
+  const searchBar = document.getElementById('search-bar');
+  if (!openButton || !closeButton || !searchBar) return;
+  // local handlers: rely on search.js for full functionality
+  openButton.addEventListener('click', () => {
+    searchBar.style.display = 'block';
+    openButton.style.display = 'none';
+    closeButton.style.display = 'block';
+    const si = document.getElementById('search-input');
+    if (si) si.focus();
+  });
+  closeButton.addEventListener('click', () => {
+    searchBar.style.display = 'none';
+    closeButton.style.display = 'none';
+    openButton.style.display = 'block';
+  });
+});
