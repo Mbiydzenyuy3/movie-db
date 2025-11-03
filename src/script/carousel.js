@@ -5,11 +5,11 @@ const options = {
     accept: 'application/json',
     Authorization:
       'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0ZWYzNjNmOWY5YTNjNTUzNTE0OWM5MDk3MGZhMjMxMSIsIm5iZiI6MTczMzUxMDAxOS40MTYsInN1YiI6IjY3NTM0MzgzODcxYTQyYzljMjQ1NDFhNSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.FgU6EplfTnUB-e6GZZfUI7lO0Ad71oYwG54qzjXpozo',
-  }
+  },
 }
 
 // const API_KEY = import.meta.env.VITE_BASE_API_KEY
- const BASE_URL = import.meta.env.VITE_BASE_URL
+const BASE_URL = import.meta.env.VITE_BASE_URL
 const IMG_PATH = import.meta.env.VITE_IMG_PATH
 
 fetch(`${BASE_URL}/movie/popular?language=en-US&page=1`, options)
@@ -45,20 +45,15 @@ fetch(`${BASE_URL}/movie/popular?language=en-US&page=1`, options)
       slideWrapper.appendChild(movieParagraph)
     }
   })
-  .then(() => {
-    const swiper = new Swiper('#watchlist', {
-      navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-      },
-    })
+  .then(() => {})
+  .catch((err) => {
+    throw new Error(err)
   })
-  .catch((err) => {throw new Error(err)})
 
 document.addEventListener('DOMContentLoaded', () => {
   new Swiper('.logo-carousel', {
     slidesPerView: 8, // Number of logos visible at a time
-    spaceBetween: 20, 
+    spaceBetween: 20,
     loop: true, // Infinite scrolling
     navigation: {
       nextEl: '.swiper-button-next',
@@ -68,6 +63,6 @@ document.addEventListener('DOMContentLoaded', () => {
       640: { slidesPerView: 2 },
       768: { slidesPerView: 3 },
       1024: { slidesPerView: 5 },
-    }
+    },
   })
 })

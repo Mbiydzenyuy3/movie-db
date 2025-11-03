@@ -1,9 +1,9 @@
-import '../styles/main.css';
-import '../styles/style.css';
-import '../script/carousel.js';
-import { fetchPopularMovies } from '../script/api.js';
-import '../script/counter.js';
-import '../script/search.js';
+import '../styles/main.css'
+import '../styles/style.css'
+import '../script/carousel.js'
+import { fetchPopularMovies } from '../script/api.js'
+import '../script/counter.js'
+import '../script/search.js'
 
 document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('app').innerHTML = `
@@ -95,12 +95,12 @@ document.addEventListener('DOMContentLoaded', () => {
   </div>
 
   <footer> ... </footer>
-  `;
+  `
 
   // Populate popular movies then init Swiper on the section (not the inner wrapper)
-  (async () => {
+  ;(async () => {
     try {
-      await fetchPopularMovies(); // populates #popular-swiper
+      await fetchPopularMovies() // populates #popular-swiper
       // initialize after DOM painted so Swiper can read slides
       requestAnimationFrame(() => {
         // initialize Swiper on the popular section (container with class 'swiper')
@@ -117,18 +117,18 @@ document.addEventListener('DOMContentLoaded', () => {
             768: { slidesPerView: 2 },
             1024: { slidesPerView: 3 },
           },
-        });
-      });
+        })
+      })
     } catch (e) {
-      console.warn('fetchPopularMovies error', e);
+      console.warn('fetchPopularMovies error', e)
     }
-  })();
-});
+  })()
+})
 
 // Shared API options and constants used elsewhere in this file
-const BASE_URL = import.meta.env.VITE_BASE_URL;
+const BASE_URL = import.meta.env.VITE_BASE_URL
 const IMG_PATH =
-  import.meta.env.VITE_IMG_PATH || 'https://image.tmdb.org/t/p/w500';
+  import.meta.env.VITE_IMG_PATH || 'https://image.tmdb.org/t/p/w500'
 
 const options = {
   method: 'GET',
@@ -137,7 +137,7 @@ const options = {
     Authorization:
       'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwYmEwM2JhZjAwODc4YTBhNmE4MDYwN2U1ZGI5NzFmMCIsIm5iZiI6MTczMzc4Mzc4MC4yNTUsInN1YiI6IjY3NTc3MGU0MGFiN2U4MDc3Y2ZiZjFlYyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.XXDs4eNLPoVC8cYP4I4R_ZT48CSvQPpCMqUGOWCPlVk',
   },
-};
+}
 
 // Just release (discover/tv) fetch + init its swiper after DOM insert
 fetch(
@@ -146,39 +146,39 @@ fetch(
 )
   .then((res) => res.json())
   .then((data) => {
-    const firstSection = document.getElementById('swiper-wrapper-1');
-    if (!firstSection || !Array.isArray(data.results)) return;
+    const firstSection = document.getElementById('swiper-wrapper-1')
+    if (!firstSection || !Array.isArray(data.results)) return
 
-    const frag = document.createDocumentFragment();
+    const frag = document.createDocumentFragment()
     data.results.forEach((movie) => {
       const posterPath = movie.poster_path
         ? `${IMG_PATH}${movie.poster_path}`
-        : '/assets/img/placeholder-poster.jpg';
-      const slide = document.createElement('a');
-      slide.href = 'details.html?movie_id=' + movie.id;
-      slide.className = 'released-movies swiper-slide';
+        : '/assets/img/placeholder-poster.jpg'
+      const slide = document.createElement('a')
+      slide.href = 'details.html?movie_id=' + movie.id
+      slide.className = 'released-movies swiper-slide'
 
-      const img = document.createElement('img');
-      img.src = posterPath;
-      img.alt = movie.name || movie.title || '';
-      img.className = 'movie-poster';
-      slide.appendChild(img);
+      const img = document.createElement('img')
+      img.src = posterPath
+      img.alt = movie.name || movie.title || ''
+      img.className = 'movie-poster'
+      slide.appendChild(img)
 
-      const movieTitle = document.createElement('h4');
-      movieTitle.className = 'movie-title';
+      const movieTitle = document.createElement('h4')
+      movieTitle.className = 'movie-title'
       movieTitle.textContent =
-        movie.name || movie.original_name || movie.title || '';
-      slide.appendChild(movieTitle);
+        movie.name || movie.original_name || movie.title || ''
+      slide.appendChild(movieTitle)
 
-      const movieParagraph = document.createElement('p');
-      movieParagraph.className = 'movie-paragraph';
-      movieParagraph.innerHTML = `&#11088 ${movie.vote_average} | Action - Movies `;
-      slide.appendChild(movieParagraph);
+      const movieParagraph = document.createElement('p')
+      movieParagraph.className = 'movie-paragraph'
+      movieParagraph.innerHTML = `&#11088 ${movie.vote_average} | Action - Movies `
+      slide.appendChild(movieParagraph)
 
-      frag.appendChild(slide);
-    });
+      frag.appendChild(slide)
+    })
 
-    firstSection.appendChild(frag);
+    firstSection.appendChild(frag)
   })
   .then(() => {
     // init swiper for just-release
@@ -194,48 +194,48 @@ fetch(
         768: { slidesPerView: 2 },
         1024: { slidesPerView: 3 },
       },
-    });
+    })
   })
   .catch((err) => {
-    console.error(err);
-  });
+    console.error(err)
+  })
 
 // top-rated -> likes section
 fetch(`${BASE_URL}/movie/top_rated?language=en-US&page=1`, options)
   .then((res) => res.json())
   .then((data) => {
-    const movieList = document.getElementById('swiper-wrapper-3');
-    if (!movieList || !Array.isArray(data.results)) return;
+    const movieList = document.getElementById('swiper-wrapper-3')
+    if (!movieList || !Array.isArray(data.results)) return
 
-    const frag = document.createDocumentFragment();
+    const frag = document.createDocumentFragment()
     data.results.forEach((movie) => {
       const posterPath = movie.poster_path
         ? `${IMG_PATH}${movie.poster_path}`
-        : '/assets/img/placeholder-poster.jpg';
-      const slide = document.createElement('a');
-      slide.href = 'details.html?movie_id=' + movie.id;
-      slide.className = 'released-movies swiper-slide';
+        : '/assets/img/placeholder-poster.jpg'
+      const slide = document.createElement('a')
+      slide.href = 'details.html?movie_id=' + movie.id
+      slide.className = 'released-movies swiper-slide my-slide'
 
-      const img = document.createElement('img');
-      img.src = posterPath;
-      img.alt = movie.title || movie.name || '';
-      img.className = 'movie-poster-one';
-      slide.appendChild(img);
+      const img = document.createElement('img')
+      img.src = posterPath
+      img.alt = movie.title || movie.name || ''
+      img.className = 'movie-poster-one poster-size'
+      slide.appendChild(img)
 
-      const movieTitle = document.createElement('h4');
-      movieTitle.className = 'movie-title';
-      movieTitle.textContent = movie.title || movie.name || '';
-      slide.appendChild(movieTitle);
+      const movieTitle = document.createElement('h4')
+      movieTitle.className = 'movie-title heading-four'
+      movieTitle.textContent = movie.title || movie.name || ''
+      slide.appendChild(movieTitle)
 
-      const movieParagraph = document.createElement('p');
-      movieParagraph.className = 'movie-paragraph';
-      movieParagraph.innerHTML = `&#11088 ${movie.vote_average} | Mystery - Movies `;
-      slide.appendChild(movieParagraph);
+      const movieParagraph = document.createElement('p')
+      movieParagraph.className = 'movie-paragraph'
+      movieParagraph.innerHTML = `&#11088 ${movie.vote_average} | Mystery - Movies `
+      slide.appendChild(movieParagraph)
 
-      frag.appendChild(slide);
-    });
+      frag.appendChild(slide)
+    })
 
-    movieList.appendChild(frag);
+    movieList.appendChild(frag)
   })
   .then(() => {
     new Swiper('#likes', {
@@ -250,29 +250,29 @@ fetch(`${BASE_URL}/movie/top_rated?language=en-US&page=1`, options)
         768: { slidesPerView: 2 },
         1024: { slidesPerView: 4 },
       },
-    });
+    })
   })
   .catch((err) => {
-    console.error(err);
-  });
+    console.error(err)
+  })
 
 // basic search bar open/close UX (keeps behavior consistent)
 document.addEventListener('click', (e) => {
-  const openButton = document.getElementById('open');
-  const closeButton = document.getElementById('close');
-  const searchBar = document.getElementById('search-bar');
-  if (!openButton || !closeButton || !searchBar) return;
+  const openButton = document.getElementById('open')
+  const closeButton = document.getElementById('close')
+  const searchBar = document.getElementById('search-bar')
+  if (!openButton || !closeButton || !searchBar) return
   // local handlers: rely on search.js for full functionality
   openButton.addEventListener('click', () => {
-    searchBar.style.display = 'block';
-    openButton.style.display = 'none';
-    closeButton.style.display = 'block';
-    const si = document.getElementById('search-input');
-    if (si) si.focus();
-  });
+    searchBar.style.display = 'block'
+    openButton.style.display = 'none'
+    closeButton.style.display = 'block'
+    const si = document.getElementById('search-input')
+    if (si) si.focus()
+  })
   closeButton.addEventListener('click', () => {
-    searchBar.style.display = 'none';
-    closeButton.style.display = 'none';
-    openButton.style.display = 'block';
-  });
-});
+    searchBar.style.display = 'none'
+    closeButton.style.display = 'none'
+    openButton.style.display = 'block'
+  })
+})
