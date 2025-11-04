@@ -3,8 +3,7 @@ import Swiper, { Navigation, Pagination, Autoplay, EffectFade } from 'swiper'
 const API_KEY = import.meta.env.VITE_BASE_API_KEY
 const BASE_URL = import.meta.env.VITE_BASE_URL
 const IMG_PATH =
-  import.meta.env.VITE_IMG_PATH||'https://image.tmdb.org/t/p/w500'
-  
+  import.meta.env.VITE_IMG_PATH || 'https://image.tmdb.org/t/p/w500'
 Swiper.use([Navigation, Pagination, Autoplay, EffectFade])
 // expose to window for modules that still reference global Swiper
 window.Swiper = Swiper

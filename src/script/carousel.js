@@ -11,7 +11,7 @@ const options = {
 
 Swiper.use([Navigation, Pagination, Autoplay, EffectFade])
 // expose to window for modules that still reference global Swiper
-window.Swiper=Swiper
+window.Swiper = Swiper
 
 // const API_KEY = import.meta.env.VITE_BASE_API_KEY
 const BASE_URL = import.meta.env.VITE_BASE_URL

@@ -1,5 +1,5 @@
 import Swiper, { Navigation, Pagination, Autoplay, EffectFade } from 'swiper'
-const options={
+const options = {
   method: 'GET',
   headers: {
     accept: 'application/json',
