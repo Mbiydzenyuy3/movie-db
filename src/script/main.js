@@ -117,7 +117,7 @@ document.addEventListener('DOMContentLoaded', () => {
             1024: { slidesPerView: 3 }
           }
         })
-        void popularSwiper
+        window.popularSwiper = popularSwiper
       })
     } catch (e) {
       console.warn('fetchPopularMovies error', e)
@@ -217,7 +217,7 @@ fetch(
         1024: { slidesPerView: 3 }
       }
     })
-    void justReleaseSwiper
+    window.justReleaseSwiper = justReleaseSwiper
   })
   .catch((err) => {
     console.error(err)
@@ -253,7 +253,7 @@ fetch(`${BASE_URL}/movie/top_rated?language=en-US&page=1`, options)
         1024: { slidesPerView: 4 }
       }
     })
-    void likesSwiper
+    window.likesSwiper = likesSwiper
   })
   .catch((err) => {
     console.error(err)

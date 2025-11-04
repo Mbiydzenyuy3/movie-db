@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
     return fetchJson(`${BASE_URL}/movie/${id}/images?api_key=${API_KEY}`)
   }
 
-  function createPoster(src, alt = 'poster') {
+  function createPoster (src, alt = 'poster') {
     const img = document.createElement('img')
     img.src = src
     img.alt = alt
@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
     return h ? `${h}h ${m}m` : `${m}m`
   }
 
-  function render(movie, credits, images) {
+  function render (movie, credits, images) {
     container.innerHTML = ''
 
     const posterSrc = movie.poster_path

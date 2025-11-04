@@ -157,7 +157,7 @@ function initHeroSwiper () {
       enabled: true
     }
   })
-  void newSwiper
+  window.heroSwiper = newSwiper
 }
 
 // tiny utility to escape text inserted into innerHTML
