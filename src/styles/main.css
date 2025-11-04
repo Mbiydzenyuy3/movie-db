@@ -1,4 +1,5 @@
 /* details page styles */
+
 #details-page {
   display: flex;
   flex-direction: column;
@@ -45,6 +46,7 @@
   background-repeat: no-repeat;
   background-position: 10% 25%;
   background-size: cover;
+
   /* aspect-ratio: 16 / 9; */
 }
 
@@ -64,7 +66,7 @@
     text-align: left;
   }
 
-  .release_date {
+  .release-date {
     font-size: 3rem;
     color: var(--title-color);
     letter-spacing: -2px;
@@ -73,7 +75,7 @@
     text-align: left;
   }
 
-  .movie_gens {
+  .movie-gens {
     color: var(--body-text);
     text-align: left;
   }
@@ -86,7 +88,6 @@
     text-align: left;
   }
 }
-
 
 .cast-card {
   display: flex;
@@ -113,6 +114,7 @@
 }
 
 /* logo carousel here */
+
 .logo-carousel {
   display: flex;
   overflow: hidden;
@@ -135,6 +137,7 @@
 }
 
 /* Movie details section */
+
 #movie-details {
   display: flex;
   flex-direction: column;
@@ -142,6 +145,12 @@
   margin-bottom: 40px;
   max-width: 100%;
   height: 80vh;
+}
+
+.slide img {
+  width: 100%;
+  display: block;
+  border-radius: 10px;
 }
 
 #movie-details img {
@@ -155,14 +164,62 @@
   flex: 1;
 }
 
-/* Section headings */
+/* Movie Details Styles */
+
+#movie-details-hidden {
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 2rem;
+  margin-top: 2rem;
+  box-shadow: 0 2px 5px #001a;
+}
+
 h2 {
   margin-bottom: 20px;
-  border-bottom: 2px solid #444;
   padding-bottom: 10px;
 }
 
-/* Cast and similar movies sections */
+#movie-details-hidden h2 {
+  margin-bottom: 1rem;
+}
+
+#movie-details-hidden p {
+  margin-bottom: 0.5rem;
+}
+
+#movie-details-hidden button {
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Favorites Styles */
+
+#favorites {
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 2rem;
+  margin-top: 2rem;
+  box-shadow: 0 2px 5px #001a;
+}
+
+#favorites h2 {
+  margin-bottom: 1rem;
+}
+
+#show-favorites {
+  padding: 0.5rem 1rem;
+  background-color: #fff;
+  color: #333;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
 #movie-cast,
 #similar-movies {
   display: flex;
@@ -196,17 +253,15 @@ h2 {
 }
 
 /* Cast and similar movies text */
+
 #movie-cast p,
 #similar-movies p {
   margin-top: 10px;
   font-size: 14px;
 }
 
-#cast-container {
-  margin-top: 8rem;
-}
-
 /* slider styles */
+
 .slider {
   position: relative;
   width: 85%;
@@ -228,19 +283,6 @@ h2 {
   box-sizing: border-box;
 }
 
-
-.slide img {
-  width: 100%;
-  display: block;
-  border-radius: 10px;
-}
-
-/* .circle-container {
-  display: flex;
-  align-items: center;
-  margin-top: 10px;
-} */
-
 nav ul {
   display: none;
 }
@@ -251,7 +293,7 @@ nav ul {
     position: fixed;
     bottom: 20px;
     right: 20px;
-    background-color: #007BFF;
+    background-color: #007bff;
     color: white;
   }
 
