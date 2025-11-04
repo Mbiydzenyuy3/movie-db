@@ -139,6 +139,50 @@ const options = {
   }
 }
 
+function buildSlidesFragment (
+  results,
+  {
+    imgClass = 'movie-poster',
+    slideClass = 'released-movies swiper-slide',
+    titleKeys = ['title', 'name', 'original_name'],
+    paragraphTemplate = (m) => `&#11088 ${m.vote_average} | Movies`,
+    posterFallback = '/assets/img/placeholder-poster.jpg'
+  } = {}
+) {
+  const frag = document.createDocumentFragment()
+  if (!Array.isArray(results)) return frag
+
+  results.forEach((movie) => {
+    const posterPath = movie.poster_path
+      ? `${IMG_PATH}${movie.poster_path}`
+      : posterFallback
+
+    const slide = document.createElement('a')
+    slide.href = 'details.html?movie_id=' + (movie.id || '')
+    slide.className = slideClass
+
+    const img = document.createElement('img')
+    img.src = posterPath
+    img.alt = titleKeys.map((k) => movie[k]).find(Boolean) || ''
+    img.className = imgClass
+    slide.appendChild(img)
+
+    const movieTitle = document.createElement('h4')
+    movieTitle.className = 'movie-title'
+    movieTitle.textContent = titleKeys.map((k) => movie[k]).find(Boolean) || ''
+    slide.appendChild(movieTitle)
+
+    const movieParagraph = document.createElement('p')
+    movieParagraph.className = 'movie-paragraph'
+    movieParagraph.innerHTML = paragraphTemplate(movie)
+    slide.appendChild(movieParagraph)
+
+    frag.appendChild(slide)
+  })
+
+  return frag
+}
+
 // Just release (discover/tv) fetch + init its swiper after DOM insert
 fetch(
   `${BASE_URL}/discover/tv?include_adult=false&include_null_first_air_dates=false&language=en-US&page=1&sort_by=popularity.desc`,
@@ -149,33 +193,11 @@ fetch(
     const firstSection = document.getElementById('swiper-wrapper-1')
     if (!firstSection || !Array.isArray(data.results)) return
 
-    const frag = document.createDocumentFragment()
-    data.results.forEach((movie) => {
-      const posterPath = movie.poster_path
-        ? `${IMG_PATH}${movie.poster_path}`
-        : '/assets/img/placeholder-poster.jpg'
-      const slide = document.createElement('a')
-      slide.href = 'details.html?movie_id=' + movie.id
-      slide.className = 'released-movies swiper-slide'
-
-      const img = document.createElement('img')
-      img.src = posterPath
-      img.alt = movie.name || movie.title || ''
-      img.className = 'movie-poster'
-      slide.appendChild(img)
-
-      const movieTitle = document.createElement('h4')
-      movieTitle.className = 'movie-title'
-      movieTitle.textContent =
-        movie.name || movie.original_name || movie.title || ''
-      slide.appendChild(movieTitle)
-
-      const movieParagraph = document.createElement('p')
-      movieParagraph.className = 'movie-paragraph'
-      movieParagraph.innerHTML = `&#11088 ${movie.vote_average} | Action - Movies `
-      slide.appendChild(movieParagraph)
-
-      frag.appendChild(slide)
+    const frag = buildSlidesFragment(data.results, {
+      imgClass: 'movie-poster',
+      slideClass: 'released-movies swiper-slide',
+      titleKeys: ['name', 'original_name', 'title'],
+      paragraphTemplate: (m) => `&#11088 ${m.vote_average} | Action - Movies `
     })
 
     firstSection.appendChild(frag)
@@ -208,32 +230,11 @@ fetch(`${BASE_URL}/movie/top_rated?language=en-US&page=1`, options)
     const movieList = document.getElementById('swiper-wrapper-3')
     if (!movieList || !Array.isArray(data.results)) return
 
-    const frag = document.createDocumentFragment()
-    data.results.forEach((movie) => {
-      const posterPath = movie.poster_path
-        ? `${IMG_PATH}${movie.poster_path}`
-        : '/assets/img/placeholder-poster.jpg'
-      const slide = document.createElement('a')
-      slide.href = 'details.html?movie_id=' + movie.id
-      slide.className = 'released-movies swiper-slide my-slide'
-
-      const img = document.createElement('img')
-      img.src = posterPath
-      img.alt = movie.title || movie.name || ''
-      img.className = 'movie-poster-one poster-size'
-      slide.appendChild(img)
-
-      const movieTitle = document.createElement('h4')
-      movieTitle.className = 'movie-title heading-four'
-      movieTitle.textContent = movie.title || movie.name || ''
-      slide.appendChild(movieTitle)
-
-      const movieParagraph = document.createElement('p')
-      movieParagraph.className = 'movie-paragraph'
-      movieParagraph.innerHTML = `&#11088 ${movie.vote_average} | Mystery - Movies `
-      slide.appendChild(movieParagraph)
-
-      frag.appendChild(slide)
+    const frag = buildSlidesFragment(data.results, {
+      imgClass: 'movie-poster-one poster-size',
+      slideClass: 'released-movies swiper-slide',
+      titleKeys: ['title', 'name'],
+      paragraphTemplate: (m) => `&#11088 ${m.vote_average} | Mystery - Movies `
     })
 
     movieList.appendChild(frag)
