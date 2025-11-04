@@ -21,7 +21,7 @@ const TRENDING_URL =
 const MAX_HERO_SLIDES = 6
 
 // Helper to preload an image and resolve when loaded (or reject)
-function preloadImage(url) {
+function preloadImage (url) {
   return new Promise((resolve, reject) => {
     if (!url) return reject(new Error('No url'))
     const img = new Image()
@@ -31,7 +31,7 @@ function preloadImage(url) {
   })
 }
 
-async function buildHeroSlides() {
+async function buildHeroSlides () {
   try {
     const res = await fetch(TRENDING_URL, options)
     if (!res.ok) throw new Error(`Trending fetch failed (${res.status})`)
@@ -128,7 +128,7 @@ async function buildHeroSlides() {
 }
 
 // Initialize Swiper with autoplay 6000ms
-function initHeroSwiper() {
+function initHeroSwiper () {
   if (typeof Swiper === 'undefined') {
     // Swiper not available globally — log and exit
     // eslint-disable-next-line no-console
@@ -170,7 +170,7 @@ function initHeroSwiper() {
 }
 
 // tiny utility to escape text inserted into innerHTML
-function escapeHtml(str) {
+function escapeHtml (str) {
   return String(str)
     .replace(/&/g, '&amp;')
     .replace(/</g, '&lt;')

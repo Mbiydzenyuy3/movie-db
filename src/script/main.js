@@ -149,7 +149,7 @@ const options = {
   }
 }
 
-function buildSlidesFragment(
+function buildSlidesFragment (
   results,
   {
     imgClass = 'movie-poster',

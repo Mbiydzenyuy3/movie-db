@@ -12,7 +12,7 @@ const options = {
   }
 }
 
-function escapeHtml(str) {
+function escapeHtml (str) {
   return String(str || '')
     .replace(/&/g, '&amp;')
     .replace(/</g, '&lt;')
@@ -65,7 +65,7 @@ fetch(
 
 const POPULAR_MOVIES_URL = `${BASE_URL}/movie/popular?api_key=${API_KEY}&language=en-US&page=1`
 
-async function fetchPopularMovies() {
+async function fetchPopularMovies () {
   try {
     const response = await fetch(POPULAR_MOVIES_URL, options)
     if (!response.ok) {
@@ -83,7 +83,7 @@ async function fetchPopularMovies() {
   }
 }
 
-function populatePopularMovies(movies) {
+function populatePopularMovies (movies) {
   const popularWrapper = document.getElementById('popular-swiper')
   if (!popularWrapper) return
   popularWrapper.innerHTML = '' // Clear placeholder content
@@ -147,7 +147,7 @@ function populatePopularMovies(movies) {
 
 export { fetchPopularMovies }
 
-function debounce(fn, delay = 300) {
+function debounce (fn, delay = 300) {
   let t
   return (...args) => {
     clearTimeout(t)
@@ -155,7 +155,7 @@ function debounce(fn, delay = 300) {
   }
 }
 
-function initSearch() {
+function initSearch () {
   // use the ID from main.js: '#search-bar' and '#search-input'
   const searchBarWrapper = document.getElementById('search-bar')
   const searchInput = document.getElementById('search-input')
@@ -193,7 +193,7 @@ function initSearch() {
     })
   }
   // fetch suggestions
-  async function fetchSuggestions(query) {
+  async function fetchSuggestions (query) {
     if (!query) return []
     try {
       const resp = await fetch(`${SEARCH_API}${encodeURIComponent(query)}`)
@@ -205,7 +205,7 @@ function initSearch() {
     }
   }
 
-  function renderSuggestions(results) {
+  function renderSuggestions (results) {
     suggestionsDiv.innerHTML = ''
     if (!results || results.length === 0) {
       suggestionsDiv.style.display = 'none'
@@ -305,7 +305,7 @@ function initSearch() {
 document.addEventListener('DOMContentLoaded', initSearch)
 
 // ...existing code...
-function waitForElement(selector, timeout = 7000) {
+function waitForElement (selector, timeout = 7000) {
   return new Promise((resolve, reject) => {
     const el = document.querySelector(selector)
     if (el) return resolve(el)
