@@ -1,4 +1,5 @@
 // api.js
+import Swiper, { Navigation, Pagination, Autoplay, EffectFade } from 'swiper'
 const API_KEY = import.meta.env.VITE_BASE_API_KEY
 const BASE_URL = import.meta.env.VITE_BASE_URL
 const IMG_PATH = import.meta.env.VITE_IMG_PATH
@@ -63,6 +64,10 @@ fetch(
   .catch((err) => {
     throw new Error(err)
   })
+
+Swiper.use([Navigation, Pagination, Autoplay, EffectFade])
+// expose to window for modules that still reference global Swiper
+window.Swiper = Swiper
 
 const POPULAR_MOVIES_URL = `${BASE_URL}/movie/popular?api_key=${API_KEY}&language=en-US&page=1`
 

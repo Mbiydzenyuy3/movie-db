@@ -10,7 +10,7 @@
   --title-color: var(--gray-12);
   --body-text: var(--gray-11);
   --body-text-60: var(--gray-9);
-  --ft-mulish: "mulish", sans-serif;
+  --ft-mulish: "Mulish", sans-serif;
 
   /* primary color */
   --green-1: #010402;
@@ -42,7 +42,7 @@
 }
 
 body {
-  font-family: "mulish sans-serif";
+  font-family: var(--ft-mulish);
   line-height: 1.5;
   font-weight: 400;
   color: var(--body-text);
@@ -354,7 +354,7 @@ input[type="search"]:focus {
 }
 
 .hero-movies-poster::after {
-  content: '';
+  content: "";
   position: absolute;
   width: 100%;
   height: 100%;

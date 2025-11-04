@@ -1,4 +1,5 @@
-const options = {
+import Swiper, { Navigation, Pagination, Autoplay, EffectFade } from 'swiper'
+const options={
   method: 'GET',
   headers: {
     accept: 'application/json',
@@ -6,6 +7,10 @@ const options = {
       'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0ZWYzNjNmOWY5YTNjNTUzNTE0OWM5MDk3MGZhMjMxMSIsIm5iZiI6MTczMzUxMDAxOS40MTYsInN1YiI6IjY3NTM0MzgzODcxYTQyYzljMjQ1NDFhNSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.FgU6EplfTnUB-e6GZZfUI7lO0Ad71oYwG54qzjXpozo'
   }
 }
+
+Swiper.use([Navigation, Pagination, Autoplay, EffectFade])
+// expose to window for modules that still reference global Swiper
+window.Swiper = Swiper
 
 const HERO_IMG_BASE = 'https://image.tmdb.org/t/p/original'
 const TRENDING_URL =

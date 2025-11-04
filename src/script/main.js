@@ -1,8 +1,14 @@
+import Swiper, { Navigation, Pagination, Autoplay, EffectFade } from 'swiper'
+
 import '../styles/main.css'
 import '../styles/style.css'
 import '../script/carousel.js'
 import { fetchPopularMovies } from '../script/api.js'
 import '../script/counter.js'
+
+Swiper.use([Navigation, Pagination, Autoplay, EffectFade])
+// expose to window for modules that still reference global Swiper
+window.Swiper = Swiper
 
 document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('app').innerHTML = `
@@ -139,7 +145,7 @@ const options = {
   }
 }
 
-function buildSlidesFragment (
+function buildSlidesFragment(
   results,
   {
     imgClass = 'movie-poster',

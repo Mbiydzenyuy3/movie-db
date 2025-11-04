@@ -1,4 +1,5 @@
 // watch list section
+import Swiper, { Navigation, Pagination, Autoplay, EffectFade } from 'swiper'
 const options = {
   method: 'GET',
   headers: {
@@ -7,6 +8,10 @@ const options = {
       'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0ZWYzNjNmOWY5YTNjNTUzNTE0OWM5MDk3MGZhMjMxMSIsIm5iZiI6MTczMzUxMDAxOS40MTYsInN1YiI6IjY3NTM0MzgzODcxYTQyYzljMjQ1NDFhNSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.FgU6EplfTnUB-e6GZZfUI7lO0Ad71oYwG54qzjXpozo'
   }
 }
+
+Swiper.use([Navigation, Pagination, Autoplay, EffectFade])
+// expose to window for modules that still reference global Swiper
+window.Swiper=Swiper
 
 // const API_KEY = import.meta.env.VITE_BASE_API_KEY
 const BASE_URL = import.meta.env.VITE_BASE_URL
@@ -51,7 +56,7 @@ fetch(`${BASE_URL}/movie/popular?language=en-US&page=1`, options)
   })
 
 document.addEventListener('DOMContentLoaded', () => {
-  const logoCarousel = new Swiper('.logo-carousel', {
+  const logoCarouselSwiper = new Swiper('.logo-carousel', {
     slidesPerView: 8, // Number of logos visible at a time
     spaceBetween: 20,
     loop: true, // Infinite scrolling
@@ -65,5 +70,5 @@ document.addEventListener('DOMContentLoaded', () => {
       1024: { slidesPerView: 5 }
     }
   })
-  void logoCarousel
+  window.logoCarouselSwiper = logoCarouselSwiper
 })
