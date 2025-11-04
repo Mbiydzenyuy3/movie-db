@@ -1,4 +1,11 @@
-import Swiper, { Navigation, Pagination, Autoplay, EffectFade } from 'swiper'
+import Swiper from 'swiper'
+import { Navigation, Pagination, Autoplay, EffectFade } from 'swiper/modules'
+
+import 'swiper/css'
+import 'swiper/css/navigation'
+import 'swiper/css/pagination'
+import 'swiper/css/autoplay'
+import 'swiper/css/effect-fade'
 const options = {
   method: 'GET',
   headers: {
@@ -8,17 +15,13 @@ const options = {
   }
 }
 
-Swiper.use([Navigation, Pagination, Autoplay, EffectFade])
-// expose to window for modules that still reference global Swiper
-window.Swiper = Swiper
-
 const HERO_IMG_BASE = 'https://image.tmdb.org/t/p/original'
 const TRENDING_URL =
   'https://api.themoviedb.org/3/trending/movie/day?language=en-US'
 const MAX_HERO_SLIDES = 6
 
 // Helper to preload an image and resolve when loaded (or reject)
-function preloadImage (url) {
+function preloadImage(url) {
   return new Promise((resolve, reject) => {
     if (!url) return reject(new Error('No url'))
     const img = new Image()
@@ -28,7 +31,7 @@ function preloadImage (url) {
   })
 }
 
-async function buildHeroSlides () {
+async function buildHeroSlides() {
   try {
     const res = await fetch(TRENDING_URL, options)
     if (!res.ok) throw new Error(`Trending fetch failed (${res.status})`)
@@ -125,7 +128,7 @@ async function buildHeroSlides () {
 }
 
 // Initialize Swiper with autoplay 6000ms
-function initHeroSwiper () {
+function initHeroSwiper() {
   if (typeof Swiper === 'undefined') {
     // Swiper not available globally — log and exit
     // eslint-disable-next-line no-console
@@ -146,6 +149,7 @@ function initHeroSwiper () {
   }
 
   const newSwiper = new Swiper('#swiper-item', {
+    modules: [Navigation, Pagination, Autoplay, EffectFade],
     loop: true,
     slidesPerView: 1,
     effect: 'fade',
@@ -166,7 +170,7 @@ function initHeroSwiper () {
 }
 
 // tiny utility to escape text inserted into innerHTML
-function escapeHtml (str) {
+function escapeHtml(str) {
   return String(str)
     .replace(/&/g, '&amp;')
     .replace(/</g, '&lt;')

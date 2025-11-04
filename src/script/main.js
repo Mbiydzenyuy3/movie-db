@@ -1,14 +1,17 @@
-import Swiper, { Navigation, Pagination, Autoplay, EffectFade } from 'swiper'
+import Swiper from 'swiper'
+import { Navigation, Pagination, Autoplay, EffectFade } from 'swiper/modules'
+
+import 'swiper/css'
+import 'swiper/css/navigation'
+import 'swiper/css/pagination'
+import 'swiper/css/autoplay'
+import 'swiper/css/effect-fade'
 
 import '../styles/main.css'
 import '../styles/style.css'
 import '../script/carousel.js'
 import { fetchPopularMovies } from '../script/api.js'
 import '../script/counter.js'
-
-Swiper.use([Navigation, Pagination, Autoplay, EffectFade])
-// expose to window for modules that still reference global Swiper
-window.Swiper = Swiper
 
 document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('app').innerHTML = `
@@ -110,6 +113,7 @@ document.addEventListener('DOMContentLoaded', () => {
       requestAnimationFrame(() => {
         // initialize Swiper on the popular section (container with class 'swiper')
         const popularSwiper = new Swiper('#popular-release', {
+          modules: [Navigation, Pagination, Autoplay, EffectFade],
           slidesPerView: 1,
           spaceBetween: 12,
           loop: true,
@@ -145,7 +149,7 @@ const options = {
   }
 }
 
-function buildSlidesFragment (
+function buildSlidesFragment(
   results,
   {
     imgClass = 'movie-poster',
@@ -211,6 +215,7 @@ fetch(
   .then(() => {
     // init swiper for just-release
     const justReleaseSwiper = new Swiper('#just-release', {
+      modules: [Navigation, Pagination, Autoplay, EffectFade],
       navigation: {
         nextEl: '#just-release .swiper-button-next',
         prevEl: '#just-release .swiper-button-prev'
@@ -247,6 +252,7 @@ fetch(`${BASE_URL}/movie/top_rated?language=en-US&page=1`, options)
   })
   .then(() => {
     const likesSwiper = new Swiper('#likes', {
+      modules: [Navigation, Pagination, Autoplay, EffectFade],
       navigation: {
         nextEl: '#likes .swiper-button-next',
         prevEl: '#likes .swiper-button-prev'

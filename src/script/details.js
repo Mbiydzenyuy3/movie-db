@@ -1,12 +1,8 @@
 import '../styles/style.css'
-import Swiper, { Navigation, Pagination, Autoplay, EffectFade } from 'swiper'
 const API_KEY = import.meta.env.VITE_BASE_API_KEY
 const BASE_URL = import.meta.env.VITE_BASE_URL
 const IMG_PATH =
   import.meta.env.VITE_IMG_PATH || 'https://image.tmdb.org/t/p/w500'
-Swiper.use([Navigation, Pagination, Autoplay, EffectFade])
-// expose to window for modules that still reference global Swiper
-window.Swiper = Swiper
 document.addEventListener('DOMContentLoaded', () => {
   const urlParams = new URLSearchParams(window.location.search)
   const movieId = urlParams.get('movie_id')
@@ -32,29 +28,29 @@ document.addEventListener('DOMContentLoaded', () => {
   // show loading
   container.innerHTML = '<p>Loading movie details…</p>'
 
-  async function fetchJson (url) {
+  async function fetchJson(url) {
     const res = await fetch(url)
     if (!res.ok) throw new Error(`Request failed: ${res.status}`)
     return res.json()
   }
 
-  async function fetchMovieDetails (id) {
+  async function fetchMovieDetails(id) {
     return fetchJson(
       `${BASE_URL}/movie/${id}?api_key=${API_KEY}&language=en-US`
     )
   }
 
-  async function fetchMovieCredits (id) {
+  async function fetchMovieCredits(id) {
     return fetchJson(
       `${BASE_URL}/movie/${id}/credits?api_key=${API_KEY}&language=en-US`
     )
   }
 
-  async function fetchMovieImages (id) {
+  async function fetchMovieImages(id) {
     return fetchJson(`${BASE_URL}/movie/${id}/images?api_key=${API_KEY}`)
   }
 
-  function createPoster (src, alt = 'poster') {
+  function createPoster(src, alt = 'poster') {
     const img = document.createElement('img')
     img.src = src
     img.alt = alt
@@ -64,14 +60,14 @@ document.addEventListener('DOMContentLoaded', () => {
     return img
   }
 
-  function formatRuntime (mins) {
+  function formatRuntime(mins) {
     if (!mins && mins !== 0) return ''
     const h = Math.floor(mins / 60)
     const m = mins % 60
     return h ? `${h}h ${m}m` : `${m}m`
   }
 
-  function render (movie, credits, images) {
+  function render(movie, credits, images) {
     container.innerHTML = ''
 
     const posterSrc = movie.poster_path
@@ -219,7 +215,7 @@ document.addEventListener('DOMContentLoaded', () => {
     container.similarWrapper = similarWrapper
   }
 
-  async function loadSimilarMovies (id) {
+  async function loadSimilarMovies(id) {
     try {
       const data = await fetchJson(
         `${BASE_URL}/movie/${id}/similar?api_key=${API_KEY}&language=en-US&page=1`
